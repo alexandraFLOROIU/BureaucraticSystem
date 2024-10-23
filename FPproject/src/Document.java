@@ -10,7 +10,7 @@ public class Document {
         this.documenteNecesare = documenteNecesareObtinere;
     }
 
-    public String toString()
+    public String getNume()
     {
         return numeDocument;
     }

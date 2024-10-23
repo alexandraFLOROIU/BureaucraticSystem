@@ -31,4 +31,25 @@ public class Persoana extends  Thread{
 
         }
     }
+
+    public boolean areDocument(String numeDocument){
+        for (Document doc : documenteDetinute) {
+            if (doc.getNume().equals(numeDocument)) {
+                System.out.println("S-a gasit");
+                return true;
+            }
+        }
+        System.out.println("nah");
+        return false;
+    }
+
+    public boolean areToateDocumenteleNecesare(Document documentSolicitat) {
+        List<String> documenteNecesare = documentSolicitat.getDocumenteNecesare();
+        for (String numeDocNecesar : documenteNecesare) {
+            if (!areDocument(numeDocNecesar)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

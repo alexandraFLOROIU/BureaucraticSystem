@@ -1,2 +1,2 @@
-public class BirouUrbanism {
+public class BirouUrbanism extends Birou{
 }

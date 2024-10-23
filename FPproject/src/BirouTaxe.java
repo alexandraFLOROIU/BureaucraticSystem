@@ -1,2 +1,2 @@
-public class BirouTaxe {
+public class BirouTaxe extends Birou{
 }

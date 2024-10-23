@@ -1,2 +1,2 @@
-public class BirouSocial {
+public class BirouSocial extends Birou{
 }
