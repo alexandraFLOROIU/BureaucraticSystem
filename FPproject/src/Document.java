@@ -1,10 +1,10 @@
 import java.util.List;
 
 public class Document {
-    private final List<String> documenteNecesare;
+    private final List<Document> documenteNecesare;
     private String numeDocument;
 
-    public Document(String numeDocument, List<String> documenteNecesareObtinere)
+    public Document(String numeDocument, List<Document> documenteNecesareObtinere)
     {
         this.numeDocument = numeDocument;
         this.documenteNecesare = documenteNecesareObtinere;
@@ -15,7 +15,7 @@ public class Document {
         return numeDocument;
     }
 
-    public List<String> getDocumenteNecesare()
+    public List<Document> getDocumenteNecesare()
     {
         return this.documenteNecesare;
     }

@@ -32,9 +32,9 @@ public class Persoana extends  Thread{
         }
     }
 
-    public boolean areDocument(String numeDocument){
+    public boolean areDocument(Document Document){
         for (Document doc : documenteDetinute) {
-            if (doc.getNume().equals(numeDocument)) {
+            if (doc.getNume().equals(Document.getNume())) {
                 System.out.println("S-a gasit");
                 return true;
             }
@@ -44,8 +44,8 @@ public class Persoana extends  Thread{
     }
 
     public boolean areToateDocumenteleNecesare(Document documentSolicitat) {
-        List<String> documenteNecesare = documentSolicitat.getDocumenteNecesare();
-        for (String numeDocNecesar : documenteNecesare) {
+        List<Document> documenteNecesare = documentSolicitat.getDocumenteNecesare();
+        for (Document numeDocNecesar : documenteNecesare) {
             if (!areDocument(numeDocNecesar)) {
                 return false;
             }
@@ -64,5 +64,9 @@ public class Persoana extends  Thread{
         } else {
             System.out.println("Clientul " + this.getNumePersoana() + " nu are toate documentele necesare pentru " + documentSolicitat.getNume());
         }
+    }
+
+    public void adaugaDocumentSolicitat(Document documentSolicitat){
+        this.documenteDetinute.add(documentSolicitat);
     }
 }

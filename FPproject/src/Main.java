@@ -10,12 +10,26 @@ public class Main {
         List<Document> documenteAna = new ArrayList<Document>();
         documenteAna.add(adeverinta);
 
+        Document buletin = new Document("carte de identitate", null);
+        Document certificatDeNastere = new Document("certificat de nastere", null);
+        Document certificatDeCasatorie = new Document("Certificat de casatorie", null);
+        Document dovadaDomiciliu = new Document("Dovada Domiciliu",null);
+        Document adeverintaMedicala = new Document("adeverinta medicala",null);
+        Document documenteDeProprietate = new Document("documente de proprietate",null);
+        Document extrasDeCont = new Document("extras de cont",null);
+        Document declaratieDeVenit = new Document("declaratie de venit",null);
+
+        List<Document> l1 = new ArrayList<Document>();
+        l1.add(buletin);
+        l1.add(extrasDeCont);
+        Document certificatFiscal = new Document("certificat de urbanism",l1);
+
         Persoana persoana1 = new Persoana("Ana", documenteAna);
         Persoana persoana2 = new Persoana("Ionut", null);
         Persoana persoana3 = new Persoana("Bob", null);
 
         persoana1.start();
-        persoana1.areDocument("adeverinta");
+        persoana1.areDocument(adeverinta);
         persoana2.start();
         persoana3.start();
     }
