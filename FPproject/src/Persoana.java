@@ -52,4 +52,17 @@ public class Persoana extends  Thread{
         }
         return true;
     }
+
+    //s-ar putea sa trebuiasca adaugata metoda in obiectul ghiseu
+    public void solicitaDocument(Document documentSolicitat) {
+        //Document document = new Document(numeDocument, null);
+
+        if (this.areToateDocumenteleNecesare(documentSolicitat)) {
+
+            //trebuie adaugat metoda din ghiseu pentru acrodare document solicitat
+            System.out.println("Am dat document");
+        } else {
+            System.out.println("Clientul " + this.getNumePersoana() + " nu are toate documentele necesare pentru " + documentSolicitat.getNume());
+        }
+    }
 }
