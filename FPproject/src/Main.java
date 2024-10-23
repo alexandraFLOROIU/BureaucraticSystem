@@ -6,9 +6,6 @@ public class Main {
     public static void main(String[] args) {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
-        Document adeverinta = new Document("adeverinta", null);
-        List<Document> documenteAna = new ArrayList<Document>();
-        documenteAna.add(adeverinta);
     //1
         Document buletin = new Document("carte de identitate", null);
     //2
@@ -89,13 +86,27 @@ public class Main {
         l8.add(certificatFiscal);
         Document ticheteSociale = new Document("tichete sociale",l8);
 
-        Persoana persoana1 = new Persoana("Ana", documenteAna);
+        //lista test pentru Ana(pers 1)
+        List<Document> listaTestAna = new ArrayList<>();
+        listaTestAna.add(buletin);
+        listaTestAna.add(certificatDeNastere);
+        listaTestAna.add(adeverintaMedicala);
+
+        Persoana persoana1 = new Persoana("Ana", listaTestAna);
         Persoana persoana2 = new Persoana("Ionut", null);
         Persoana persoana3 = new Persoana("Bob", null);
 
+        //test pers 1
         persoana1.start();
-        persoana1.areDocument(adeverinta);
+        persoana1.areDocument(buletin);                 //DA
+        persoana1.areDocument(certificatDeNastere);     //DA
+        persoana1.areDocument(adeverintaMedicala);      //DA
+        persoana1.areDocument(ticheteSociale);          //NU
+
+        //test pers 2
         persoana2.start();
+
+        //test pers 3
         persoana3.start();
     }
 }
