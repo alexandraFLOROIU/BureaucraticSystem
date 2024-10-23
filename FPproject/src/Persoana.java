@@ -32,14 +32,14 @@ public class Persoana extends  Thread{
         }
     }
 
-    public boolean areDocument(Document Document){
+    public boolean areDocument(Document document){
         for (Document doc : documenteDetinute) {
-            if (doc.getNume().equals(Document.getNume())) {
-                System.out.println("S-a gasit");
+            if (doc.getNume().equals(document.getNume())) {
+                System.out.println("S-a gasit -> " + document.getNume());
                 return true;
             }
         }
-        System.out.println("nah");
+        System.out.println("NU s-a gasit -> " + document.getNume());
         return false;
     }
 
