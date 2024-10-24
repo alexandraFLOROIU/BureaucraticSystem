@@ -1,9 +1,10 @@
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
-public class Persoana extends  Thread{
-    private String numePersoana;
-    private List<Document> documenteDetinute = null;
+public class Persoana extends  Thread implements Runnable{
+    private final String numePersoana;
+    private List<Document> documenteDetinute ;
     public Persoana(String numePersoana, List<Document> documenteDetinute) {
         this.numePersoana = numePersoana;
         this.documenteDetinute = documenteDetinute;
@@ -17,20 +18,20 @@ public class Persoana extends  Thread{
         System.out.println("Hello World"); // de apelat o metoda comuna;
     }
 
-    public void isCerereActe(String numeBirou, String act) { //to be implemented
-        if(numeBirou == null && act == null) {
-            throw new RuntimeException("Cerea ta nu poate fii solutionata."); //to be modified
-        }
-        if(Objects.equals(numeBirou, "BirouUrbanism")){
-
-        }
-        if(Objects.equals(numeBirou, "BirouTaxe")){
-
-        }
-        if(Objects.equals(numeBirou, "BirouSocial")){
-
-        }
-    }
+//    public void isCerereActe(String numeBirou, String act) { //to be implemented
+//        if(numeBirou == null && act == null) {
+//            throw new RuntimeException("Cerea ta nu poate fii solutionata."); //to be modified
+//        }
+//        if(Objects.equals(numeBirou, "BirouUrbanism")){
+//
+//        }
+//        if(Objects.equals(numeBirou, "BirouTaxe")){
+//
+//        }
+//        if(Objects.equals(numeBirou, "BirouSocial")){
+//
+//        }
+//    }
 
     public boolean areDocument(Document document){
         for (Document doc : documenteDetinute) {
@@ -43,30 +44,30 @@ public class Persoana extends  Thread{
         return false;
     }
 
-    public boolean areToateDocumenteleNecesare(Document documentSolicitat) {
-        List<Document> documenteNecesare = documentSolicitat.getDocumenteNecesare();
-        for (Document numeDocNecesar : documenteNecesare) {
-            if (!areDocument(numeDocNecesar)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     //s-ar putea sa trebuiasca adaugata metoda in obiectul ghiseu
-    public void solicitaDocument(Document documentSolicitat) {
+    public void solicitaDocument(Document documentSolicitat, Ghiseu ghiseu) {
         //Document document = new Document(numeDocument, null);
 
-        if (this.areToateDocumenteleNecesare(documentSolicitat)) {
+        if (ghiseu.areToateDocumenteleNecesare(documentSolicitat,this)) {
 
             //trebuie adaugat metoda din ghiseu pentru acrodare document solicitat
             System.out.println("Am dat document");
+            this.documenteDetinute.add(documentSolicitat);
         } else {
             System.out.println("Clientul " + this.getNumePersoana() + " nu are toate documentele necesare pentru " + documentSolicitat.getNume());
+            //
         }
     }
 
-    public void adaugaDocumentSolicitat(Document documentSolicitat){
-        this.documenteDetinute.add(documentSolicitat);
+    public Ghiseu alegeGhiseuPentruSolicitant(Document documentCautat, List<Birou> birouri) {
+        return birouri.stream()
+                .flatMap(birou -> birou.getGhiseu().stream()) // Trecem prin toate ghiseele
+                .filter(ghiseu -> ghiseu.getDocumenteDisponibile().stream() // Verificăm fiecare document
+                        .anyMatch(doc -> doc.getNume().equals(documentCautat.getNume()))) // Găsim documentul căutat
+                .findFirst() // Returnăm primul ghiseu care emite documentul
+                .orElseThrow();
     }
+
+
 }

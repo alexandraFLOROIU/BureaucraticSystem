@@ -22,7 +22,7 @@ public class Main {
         Document extrasDeCont = new Document("extras de cont",null);
     //8
         Document declaratieDeVenit = new Document("declaratie de venit",null);
-
+    List<Birou> birourilePrimariei = new ArrayList<>();
     //9
         List<Document> l1 = new ArrayList<>();
         l1.add(buletin);
@@ -95,13 +95,16 @@ public class Main {
         Persoana persoana1 = new Persoana("Ana", listaTestAna);
         Persoana persoana2 = new Persoana("Ionut", null);
         Persoana persoana3 = new Persoana("Bob", null);
-
+        Thread myThread = new Thread(persoana1);
         //test pers 1
-        persoana1.start();
+        myThread.start();
         persoana1.areDocument(buletin);                 //DA
         persoana1.areDocument(certificatDeNastere);     //DA
         persoana1.areDocument(adeverintaMedicala);      //DA
         persoana1.areDocument(ticheteSociale);          //NU
+
+        //Ghiseu ghiseulMeu = persoana1.alegeGhiseuPentruSolicitant(buletin, birourilePrimariei);
+        //persoana1.solicitaDocument(buletin, ghiseulMeu);
 
         //test pers 2
         persoana2.start();
