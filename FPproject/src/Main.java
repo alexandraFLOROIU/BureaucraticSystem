@@ -24,19 +24,19 @@ public class Main {
         Document declaratieDeVenit = new Document("declaratie de venit",null);
 
     //9
-        List<Document> l1 = new ArrayList<Document>();
+        List<Document> l1 = new ArrayList<>();
         l1.add(buletin);
         l1.add(extrasDeCont);
         Document certificatFiscal = new Document("certificat Fiscal",l1);
 
     //10
-        List<Document> l2 = new ArrayList<Document>();
+        List<Document> l2 = new ArrayList<>();
         l2.add(buletin);
         l2.add(certificatFiscal);
         Document certificatDeUrbanism = new Document("certificat de urbanism",l2);
 
     //11
-        List<Document> l3 = new ArrayList<Document>();
+        List<Document> l3 = new ArrayList<>();
         l3.add(certificatFiscal);
         l3.add(certificatDeUrbanism);
         Document autorizatieDeConstruire = new Document("autorizare de construire",l3);
@@ -44,20 +44,20 @@ public class Main {
         Document autorizatieDeDemolare = new Document("autorizare de demolare",l3);
 
     //13
-        List<Document> l4 = new ArrayList<Document>();
+        List<Document> l4 = new ArrayList<>();
         l4.add(buletin);
         l4.add(documenteDeProprietate);
         Document decizieDeImpunere = new Document("decizie de impunere",l4);
 
     //14
-        List<Document> l5 = new ArrayList<Document>();
+        List<Document> l5 = new ArrayList<>();
         l5.add(buletin);
         l5.add(decizieDeImpunere);
         l5.add(documenteDeProprietate);
         Document chitantaDePlataTaxe = new Document("chitanta de plata",l5);
 
     //15
-        List<Document> l6 = new ArrayList<Document>();
+        List<Document> l6 = new ArrayList<>();
         l6.add(buletin);
         l6.add(declaratieDeVenit);
         l6.add(chitantaDePlataTaxe);
@@ -67,7 +67,7 @@ public class Main {
         Document cerereTip = new Document("cerere tip",null);
 
     //17
-        List<Document> l7 = new ArrayList<Document>();
+        List<Document> l7 = new ArrayList<>();
         l7.add(buletin);
         l7.add(cerereTip);
         l7.add(certificatDeNastere);
@@ -79,7 +79,7 @@ public class Main {
         Document ajutorSocial = new Document("ajutor social",l7);
 
     //18
-        List<Document> l8 = new ArrayList<Document>();
+        List<Document> l8 = new ArrayList<>();
         l8.add(buletin);
         l8.add(adeverintaDeVenit);
         l8.add(cerereTip);
