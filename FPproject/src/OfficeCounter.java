@@ -1,36 +1,48 @@
-import java.util.List;
-
+// OfficeCounter.java
+import java.util.*;
 public class OfficeCounter {
-    private final List<Document> availableDocuments;
+    private final String name;
+    private final List<String> allowedDocuments; // Documentele pe care acest ghișeu le poate emite
+    private boolean onBreak = false;
 
-    public OfficeCounter(List<Document> availableDocuments) {
-        this.availableDocuments = availableDocuments;
+    public OfficeCounter(String name, List<String> allowedDocuments) {
+        this.name = name;
+        this.allowedDocuments = allowedDocuments;
     }
 
-    public boolean checkRequiredDocuments(Person persoanaLaRand, Document requiredDocument){
-        if(this.hasAllRequiredDocuments(requiredDocument, persoanaLaRand)){
-            System.out.println("S-a adaugat document:" + requiredDocument + "\n");
-            return true;
-        }
-        else{
-            System.out.println("Nu se poate aproba cererea.\n");
-            return false;
-        }
+    public boolean isOnBreak() {
+        return onBreak;
     }
 
-    public boolean hasAllRequiredDocuments(Document requiredDocument, Person persoanaLaRand) {
-        List<Document> requiredDocuments = requiredDocument.getRequiredDocuments();
-        for (Document requiredDocumentName : requiredDocuments) {
-            if (!persoanaLaRand.hasDocument(requiredDocumentName)) {
-                return false;
+    public void toggleBreak() {
+        onBreak = !onBreak;
+    }
+
+    public Document requestDocument(Person person, Document document) {
+        if (onBreak) {
+            System.out.println("Ghișeul " + name + " este în pauză.");
+            return null;
+        }
+
+        if (!allowedDocuments.contains(document.getName())) {  // Verificăm dacă documentul este în lista de documente permise
+            System.out.println("Ghișeul " + name + " nu poate emite documentul " + document.getName());
+            return null;
+        }
+
+        // Verificăm documentele intermediare necesare
+        for (String requiredDoc : document.getRequiredDocuments()) {
+            if (!person.hasDocument(requiredDoc)) {
+                System.out.println("Pentru a obține " + document.getName() + ", este necesar " + requiredDoc);
+                return null;
             }
         }
-        return true;
+
+        System.out.println("Documentul " + document.getName() + " a fost eliberat de ghișeul " + name);
+        return document;
     }
 
-    public List<Document> getAvailableDocuments() {
-        return availableDocuments;
+    @Override
+    public String toString() {
+        return name;
     }
-
-    //
 }

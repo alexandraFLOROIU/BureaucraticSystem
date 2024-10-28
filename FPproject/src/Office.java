@@ -1,20 +1,24 @@
+// Office.java
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-//abstracta sau nu?
+public abstract class Office {
+    protected List<OfficeCounter> counters = new ArrayList<>();
+    private Random random = new Random();
 
-public class Office {
-    public boolean submitRequest;
-
-
-    private List<OfficeCounter> officeCounters;
-    public Office() {
-        officeCounters = new ArrayList<>();
+    public void addCounter(OfficeCounter counter) {
+        counters.add(counter);
     }
 
-    public List<OfficeCounter> getOfficeCounters() {
-        return officeCounters;
+    public void manageCoffeeBreaks() {
+        for (OfficeCounter counter : counters) {
+            if (random.nextBoolean()) {
+                counter.toggleBreak();
+                System.out.println("Ghișeul " + counter + " este " + (counter.isOnBreak() ? "în pauză" : "disponibil"));
+            }
+        }
     }
 
-
+    public abstract Document requestDocument(Person person, String documentName);
 }
