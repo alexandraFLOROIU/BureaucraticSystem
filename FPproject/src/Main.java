@@ -7,104 +7,104 @@ public class Main {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
     //1
-        Document buletin = new Document("carte de identitate", null);
+        Document identityCard = new Document("identity Card", null);
     //2
-        Document certificatDeNastere = new Document("certificat de nastere", null);
+        Document birthCertificate = new Document("birth Certificate", null);
     //3
-        Document certificatDeCasatorie = new Document("Certificat de casatorie", null);
+        Document marriageCertificate = new Document("marriage Certificate", null);
     //4
-        Document dovadaDomiciliu = new Document("Dovada Domiciliu",null);
+        Document proofOfResidence = new Document("proof Of Residence",null);
     //5
-        Document adeverintaMedicala = new Document("adeverinta medicala",null);
+        Document medicalCertificate = new Document("medical Certificate",null);
     //6
-        Document documenteDeProprietate = new Document("documente de proprietate",null);
+        Document propertyDocuments = new Document("property Documents ",null);
     //7
-        Document extrasDeCont = new Document("extras de cont",null);
+        Document accountStatement = new Document("account Statement",null);
     //8
-        Document declaratieDeVenit = new Document("declaratie de venit",null);
-    List<Birou> birourilePrimariei = new ArrayList<>();
+        Document incomeDeclaration = new Document("income Declaration",null);
+        List<Office> municipalOffices = new ArrayList<>();
     //9
         List<Document> l1 = new ArrayList<>();
-        l1.add(buletin);
-        l1.add(extrasDeCont);
-        Document certificatFiscal = new Document("certificat Fiscal",l1);
+        l1.add(identityCard);
+        l1.add(accountStatement);
+        Document TaxCertificate = new Document("Tax Certificate",l1);
 
     //10
         List<Document> l2 = new ArrayList<>();
-        l2.add(buletin);
-        l2.add(certificatFiscal);
-        Document certificatDeUrbanism = new Document("certificat de urbanism",l2);
+        l2.add(identityCard);
+        l2.add(TaxCertificate);
+        Document planningCertificat = new Document("planning Certificat",l2);
 
     //11
         List<Document> l3 = new ArrayList<>();
-        l3.add(certificatFiscal);
-        l3.add(certificatDeUrbanism);
-        Document autorizatieDeConstruire = new Document("autorizare de construire",l3);
+        l3.add(TaxCertificate);
+        l3.add(planningCertificat);
+        Document buildingPermit = new Document("building Permit",l3);
     //12
-        Document autorizatieDeDemolare = new Document("autorizare de demolare",l3);
+        Document demolitionPermit = new Document("autorizare de demolare",l3);
 
     //13
         List<Document> l4 = new ArrayList<>();
-        l4.add(buletin);
-        l4.add(documenteDeProprietate);
-        Document decizieDeImpunere = new Document("decizie de impunere",l4);
+        l4.add(identityCard);
+        l4.add(propertyDocuments);
+        Document taxAssessmentDecision = new Document("decizie de impunere",l4);
 
     //14
         List<Document> l5 = new ArrayList<>();
-        l5.add(buletin);
-        l5.add(decizieDeImpunere);
-        l5.add(documenteDeProprietate);
-        Document chitantaDePlataTaxe = new Document("chitanta de plata",l5);
+        l5.add(identityCard);
+        l5.add(taxAssessmentDecision);
+        l5.add(propertyDocuments);
+        Document taxPaymentReceipt = new Document("tax Payment Receipt",l5);
 
     //15
         List<Document> l6 = new ArrayList<>();
-        l6.add(buletin);
-        l6.add(declaratieDeVenit);
-        l6.add(chitantaDePlataTaxe);
-        Document adeverintaDeVenit = new Document("adeverinta de venit",l6);
+        l6.add(identityCard);
+        l6.add(incomeDeclaration);
+        l6.add(taxPaymentReceipt);
+        Document incomeStatement = new Document("income Statement",l6);
 
     //16
-        Document cerereTip = new Document("cerere tip",null);
+        Document standardRequest = new Document("standard Request",null);
 
     //17
         List<Document> l7 = new ArrayList<>();
-        l7.add(buletin);
-        l7.add(cerereTip);
-        l7.add(certificatDeNastere);
-        l7.add(certificatDeCasatorie);
-        l7.add(adeverintaDeVenit);
-        l7.add(dovadaDomiciliu);
-        l7.add(certificatFiscal);
-        l7.add(adeverintaMedicala);
-        Document ajutorSocial = new Document("ajutor social",l7);
+        l7.add(identityCard);
+        l7.add(standardRequest);
+        l7.add(birthCertificate);
+        l7.add(marriageCertificate);
+        l7.add(incomeStatement);
+        l7.add(proofOfResidence);
+        l7.add(TaxCertificate);
+        l7.add(medicalCertificate);
+        Document socialAssistance = new Document("social Assistance",l7);
 
     //18
         List<Document> l8 = new ArrayList<>();
-        l8.add(buletin);
-        l8.add(adeverintaDeVenit);
-        l8.add(cerereTip);
-        l8.add(certificatFiscal);
-        Document ticheteSociale = new Document("tichete sociale",l8);
+        l8.add(identityCard);
+        l8.add(incomeStatement);
+        l8.add(standardRequest);
+        l8.add(TaxCertificate);
+        Document socialVouchers = new Document("social Vouchers",l8);
 
         //lista test pentru Ana(pers 1)
         List<Document> listaTestAna = new ArrayList<>();
-        listaTestAna.add(buletin);
-        listaTestAna.add(certificatDeNastere);
-        listaTestAna.add(adeverintaMedicala);
+        listaTestAna.add(identityCard);
+        listaTestAna.add(birthCertificate);
+        listaTestAna.add(medicalCertificate);
 
-        Persoana persoana1 = new Persoana("Ana", listaTestAna);
-        Persoana persoana2 = new Persoana("Ionut", null);
-        Persoana persoana3 = new Persoana("Bob", null);
+        Person persoana1 = new Person("Ana", listaTestAna);
+        Person persoana2 = new Person("Ionut", null);
+        Person persoana3 = new Person("Bob", null);
         Thread myThread = new Thread(persoana1);
         //test pers 1
         myThread.start();
-        persoana1.areDocument(buletin);                 //DA
-        persoana1.areDocument(certificatDeNastere);     //DA
-        persoana1.areDocument(adeverintaMedicala);      //DA
-        persoana1.areDocument(ticheteSociale);          //NU
+        persoana1.hasDocument(identityCard);                 //DA
+        persoana1.hasDocument(birthCertificate);     //DA
+        persoana1.hasDocument(medicalCertificate);      //DA
+        persoana1.hasDocument(socialVouchers);          //NU
 
-        //Ghiseu ghiseulMeu = persoana1.alegeGhiseuPentruSolicitant(buletin, birourilePrimariei);
-        //persoana1.solicitaDocument(buletin, ghiseulMeu);
+        //Ghiseu ghiseulMeu = persoana1.alegeGhiseuPentruSolicitant(identityCard, municipalOffices);
+        //persoana1.solicitaDocument(identityCard, ghiseulMeu);
 
         //test pers 2
         persoana2.start();

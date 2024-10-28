@@ -1,32 +1,32 @@
 import java.util.List;
 
 public class Document {
-    private final List<Document> documenteNecesare;
-    private final String numeDocument;
+    private final List<Document> requiredDocuments;
+    private final String documentName;
 
-    public Document(String numeDocument, List<Document> documenteNecesareObtinere)
+    public Document(String documentName, List<Document> requiredDocumentsForObtaining)
     {
-        this.numeDocument = numeDocument;
-        this.documenteNecesare = documenteNecesareObtinere;
+        this.documentName = documentName;
+        this.requiredDocuments = requiredDocumentsForObtaining;
     }
 
-    public String getNume()
+    public String getName()
     {
-        return numeDocument;
+        return documentName;
     }
 
-    public List<Document> getDocumenteNecesare()
+    public List<Document> getRequiredDocuments()
     {
-        return this.documenteNecesare;
+        return this.requiredDocuments;
     }
 
-    public boolean areDependente()
+    public boolean hasDependencies()
     {
-        return documenteNecesare != null;
+        return requiredDocuments != null;
     }
 
-    public String getNumeDocument(){
-        return numeDocument;
+    public String getDocumentName(){
+        return documentName;
     }
 
 }
