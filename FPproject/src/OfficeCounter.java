@@ -7,21 +7,10 @@ public class OfficeCounter {
         this.availableDocuments = availableDocuments;
     }
 
-    public boolean checkRequiredDocuments(Person persoanaLaRand, Document requiredDocument){
-        if(this.hasAllRequiredDocuments(requiredDocument, persoanaLaRand)){
-            System.out.println("S-a adaugat document:" + requiredDocument + "\n");
-            return true;
-        }
-        else{
-            System.out.println("Nu se poate aproba cererea.\n");
-            return false;
-        }
-    }
-
-    public boolean hasAllRequiredDocuments(Document requiredDocument, Person persoanaLaRand) {
+    public boolean hasAllRequiredDocuments(Document requiredDocument, Person personAtCounter) {
         List<Document> requiredDocuments = requiredDocument.getRequiredDocuments();
         for (Document requiredDocumentName : requiredDocuments) {
-            if (!persoanaLaRand.hasDocument(requiredDocumentName)) {
+            if (!personAtCounter.hasDocument(requiredDocumentName)) {
                 return false;
             }
         }

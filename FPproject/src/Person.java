@@ -42,14 +42,9 @@ public class Person extends  Thread implements Runnable{
         return false;
     }
 
-
-    //s-ar putea sa trebuiasca adaugata metoda in obiectul ghiseu
-    public void requestDocument(Document requiredDocument, OfficeCounter counter) {
-        //Document document = new Document(numeDocument, null);
-
+    public void requestDocument(Document requiredDocument,List<Office> offices) {
+        OfficeCounter counter=chooseCounterForRequester(requiredDocument,offices);
         if (counter.hasAllRequiredDocuments(requiredDocument,this)) {
-
-            //trebuie adaugat metoda din ghiseu pentru acrodare document solicitat
             System.out.println("Am dat document");
             this.ownedDocuments.add(requiredDocument);
         } else {

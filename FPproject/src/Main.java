@@ -104,7 +104,7 @@ public class Main {
         persoana1.hasDocument(socialVouchers);          //NU
 
         //Ghiseu ghiseulMeu = persoana1.alegeGhiseuPentruSolicitant(identityCard, municipalOffices);
-        //persoana1.solicitaDocument(identityCard, ghiseulMeu);
+        //persoana1.requestDocument(Document requiredDocument,List<Office> offices)
 
         //test pers 2
         persoana2.start();
