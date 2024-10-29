@@ -1,32 +1,20 @@
+// Document.java
 import java.util.List;
 
 public class Document {
-    private final List<Document> requiredDocuments;
-    private final String documentName;
+    private String name;
+    private List<String> requiredDocuments; // Lista documentelor intermediare necesare
 
-    public Document(String documentName, List<Document> requiredDocumentsForObtaining)
-    {
-        this.documentName = documentName;
-        this.requiredDocuments = requiredDocumentsForObtaining;
+    public Document(String name, List<String> requiredDocuments) {
+        this.name = name;
+        this.requiredDocuments = requiredDocuments;
     }
 
-    public String getName()
-    {
-        return documentName;
+    public String getName() {
+        return name;
     }
 
-    public List<Document> getRequiredDocuments()
-    {
-        return this.requiredDocuments;
+    public List<String> getRequiredDocuments() {
+        return requiredDocuments;
     }
-
-    public boolean hasDependencies()
-    {
-        return requiredDocuments != null;
-    }
-
-    public String getDocumentName(){
-        return documentName;
-    }
-
 }
