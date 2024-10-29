@@ -15,10 +15,29 @@ public abstract class Office {
         for (OfficeCounter counter : counters) {
             if (random.nextBoolean()) {
                 counter.toggleBreak();
-                System.out.println("Ghișeul " + counter + " este " + (counter.isOnBreak() ? "în pauză" : "disponibil"));
+                System.out.println(counter + " este " + (counter.isOnBreak() ? "în pauză" : "disponibil"));
             }
         }
     }
 
-    public abstract Document requestDocument(Person person, String documentName);
+    public abstract Document officeRequestDocument(Person person, String documentName, CityHall cityHall); // Adăugăm CityHall pentru recursivitate
+
+    public Document obtainIntermediateDocument(Person person, String documentName, CityHall cityHall) {
+        // Încearcă să obțină documentul intermediar din biroul curent
+        for (OfficeCounter counter : counters) {
+            if (!counter.isOnBreak()) {
+                Document intermediateDoc = createDocument(documentName);
+                if (counter.requestDocument(person, intermediateDoc) != null) {
+                    person.addDocument(intermediateDoc.getName());
+                    return intermediateDoc;
+                }
+            }
+        }
+
+        // Dacă nu găsește documentul în biroul curent, trimite la alte birouri prin CityHall
+        return cityHall.requestDocument(person, documentName);
+    }
+
+    // Metoda pentru crearea documentului trebuie implementată în subclase
+    protected abstract Document createDocument(String documentName);
 }

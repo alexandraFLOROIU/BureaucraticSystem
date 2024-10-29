@@ -11,25 +11,26 @@ public class UrbanPlanningOffice extends Office {
     }
 
     @Override
-    public Document requestDocument(Person person, String documentName) {
-        manageCoffeeBreaks(); // Gestionăm pauzele de cafea
+    public Document officeRequestDocument(Person person, String documentName, CityHall cityHall) {
+       // manageCoffeeBreaks(); // Gestionăm pauzele de cafea
 
         Document document = createDocument(documentName);
         for (OfficeCounter counter : counters) {
-            if (!counter.isOnBreak() && counter.requestDocument(person, document) != null) {
+            // Verificăm dacă ghișeul este disponibil și încearcă să elibereze documentul, apelând cu parametrii necesari pentru recursivitate
+            if (!counter.isOnBreak() && counter.requestDocumentWithRedirect(person, document, this, cityHall) != null) {
                 person.addDocument(document.getName());
                 return document;
             }
         }
 
-        System.out.println("Toate ghișeele sunt în pauză sau nu pot emite documentul solicitat. doc 1");
+        System.out.println("Toate ghișeele sunt în pauză sau nu pot emite documentul solicitat.");
         return null;
     }
 
-    private Document createDocument(String documentName) {
+    protected Document createDocument(String documentName) {
         switch (documentName) {
             case "certificat de urbanism":
-                return new Document("certificat de urbanism", Arrays.asList("carte de identitate"));
+                return new Document("certificat de urbanism", Arrays.asList("certificat fiscal","carte de identitate"));
             case "autorizație de construire":
                 return new Document("autorizație de construire", Arrays.asList("certificat de urbanism", "certificat fiscal"));
             case "autorizație de demolare":
