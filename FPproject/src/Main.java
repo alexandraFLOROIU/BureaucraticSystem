@@ -12,9 +12,6 @@ public class Main {
         // Cerem automat documente de la birouri diferite
         System.out.println("Cerere automată de documente pentru " + person.getName() + ":");
 
-
-
-
         cityHall.gestioneaza(person,"certificat fiscal");
         cityHall.gestioneaza(person,"chitanță de plată a taxelor locale");
         cityHall.gestioneaza(person, "autorizație de construire");
