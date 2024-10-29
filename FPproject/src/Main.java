@@ -14,6 +14,7 @@ public class Main {
 
 
 
+
         cityHall.gestioneaza(person,"certificat fiscal");
         cityHall.gestioneaza(person,"chitanță de plată a taxelor locale");
         cityHall.gestioneaza(person, "autorizație de construire");

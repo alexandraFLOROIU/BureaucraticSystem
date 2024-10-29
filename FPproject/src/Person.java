@@ -30,8 +30,10 @@ public class Person {
     public void addDocument(String documentName) {
         documents.add(documentName);
     }
+
     public String getName() {
         return name;
+
     }
 
     public List<String> getDocuments() {

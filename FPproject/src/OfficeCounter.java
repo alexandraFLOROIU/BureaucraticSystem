@@ -11,6 +11,7 @@ public class OfficeCounter {
         this.allowedDocuments = allowedDocuments;
     }
 
+
     public boolean isOnBreak() {
         return onBreak;
     }
@@ -35,6 +36,7 @@ public class OfficeCounter {
             if (!person.hasDocument(requiredDoc)) {
                 System.out.println("Pentru a obține " + document.getName() + ", este necesar " + requiredDoc);
                 return null;
+
             }
         }
 
