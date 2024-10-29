@@ -17,11 +17,14 @@ public class CityHall {
         offices.add(socialOffice);
     }
 
-    //    public void gestioneaza(Person person, String document){
-//        for (Office office : offices) {
-//            office.requestDocument(person, document,this);
-//        }
-//    }
+        public void gestioneaza(Person person, String document){
+        for (Office office : offices) {
+            if(office.officeRequestDocument(person, document, this) != null){
+                System.out.println("PRIMUL DOCUMENT DONE");
+                break;
+            }
+        }
+    }
     public void addOffice(Office office) {
         offices.add(office);
     }

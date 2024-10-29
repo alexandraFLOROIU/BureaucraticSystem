@@ -10,15 +10,12 @@ public class TaxOffice extends Office {
 
     @Override
     public Document officeRequestDocument(Person person, String documentName, CityHall cityHall) {
-        manageCoffeeBreaks(); // Gestionăm pauzele de cafea
+         // Gestionăm pauzele de cafea
 
         Document document = createDocument(documentName);
         for (OfficeCounter counter : counters) {
-            if(counter.isOnBreak())
-            {
-                counter.toggleBreak();
-            }
 
+            manageCoffeeBreaks();
             if (!counter.isOnBreak() && counter.requestDocumentWithRedirect(person, document, this, cityHall) != null) {
                 person.addDocument(document.getName());
                 return document;

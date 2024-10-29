@@ -10,10 +10,11 @@ public class SocialOffice extends Office {
 
     @Override
     public Document officeRequestDocument(Person person, String documentName, CityHall cityHall) {
-     //   manageCoffeeBreaks(); // Gestionăm pauzele de cafea
+     //   ; // Gestionăm pauzele de cafea
 
         Document document = createDocument(documentName);
         for (OfficeCounter counter : counters) {
+            manageCoffeeBreaks();
             Document issuedDoc = counter.requestDocumentWithRedirect(person, document, this, cityHall);
             if (issuedDoc != null) {
                 person.addDocument(document.getName());

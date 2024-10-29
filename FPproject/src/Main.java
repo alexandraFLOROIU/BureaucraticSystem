@@ -1,4 +1,4 @@
-import java.util.List;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -12,14 +12,13 @@ public class Main {
         // Cerem automat documente de la birouri diferite
         System.out.println("Cerere automată de documente pentru " + person.getName() + ":");
 
-        // Modificăm apelurile pentru a include cityHall ca parametru
-        for (Office office : cityHall.getOffices()) {
-            office.officeRequestDocument(person, "chitanță de plată a taxelor locale", cityHall);
-            office.officeRequestDocument(person, "autorizație de construire", cityHall);
-            office.officeRequestDocument(person, "ajutor social", cityHall);
-        }
 
-//        cityHall.gestioneaza(person,"certificat fiscal");
+
+        cityHall.gestioneaza(person,"certificat fiscal");
+        cityHall.gestioneaza(person,"chitanță de plată a taxelor locale");
+        cityHall.gestioneaza(person, "autorizație de construire");
+        cityHall.gestioneaza(person,"ajutor social");
+
         // Afișăm lista de documente obținute
         System.out.println("Documente obținute de " + person.getName() + ":");
         for (String doc : person.getDocuments()) {
