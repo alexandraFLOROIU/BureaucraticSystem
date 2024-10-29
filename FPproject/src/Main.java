@@ -7,6 +7,7 @@ public class Main {
         UrbanPlanningOffice urbanPlanningOffice = new UrbanPlanningOffice();
         SocialOffice socialOffice = new SocialOffice();
 
+
         // Creăm o persoană cu documentele inițiale
         Person person = new Person("Ion Popescu");
 
