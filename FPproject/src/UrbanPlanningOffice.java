@@ -1,5 +1,7 @@
 // UrbanPlanningOffice.java
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class UrbanPlanningOffice extends Office {
     public UrbanPlanningOffice() {
@@ -29,6 +31,7 @@ public class UrbanPlanningOffice extends Office {
     }
 
     protected Document createDocument(String documentName) {
+        List<String> lista = Collections.emptyList();
         switch (documentName) {
             case "certificat de urbanism":
                 return new Document("certificat de urbanism", Arrays.asList("certificat fiscal","carte de identitate"));
@@ -37,7 +40,7 @@ public class UrbanPlanningOffice extends Office {
             case "autorizație de demolare":
                 return new Document("autorizație de demolare", Arrays.asList("certificat de urbanism", "certificat fiscal"));
             default:
-                return new Document(documentName, Arrays.asList());
+                return new Document(documentName, lista);
         }
     }
 }
