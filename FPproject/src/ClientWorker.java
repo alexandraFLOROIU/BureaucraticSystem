@@ -31,8 +31,8 @@ class ClientWorker implements Runnable {
                     wait();
                 }
                 client.getDocuments().put(currentType, lastReceivedDocument);
+                System.out.println(clientName + ": Received document " + lastReceivedDocument.getType().getId() + " with signature " + lastReceivedDocument.getSignature() + " and name "+currentType.getName());
                 currentType = client.getNextRequiredType();
-                System.out.println(clientName + ": Received document " + lastReceivedDocument.getType().getId() + " with signature " + lastReceivedDocument.getSignature() + ".");
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
