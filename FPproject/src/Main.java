@@ -7,7 +7,7 @@ public class Main {
         CityHall cityHall=new CityHall();
         List<DocumentType> documentTypes = new ArrayList<>(cityHall.generateDocumentTypes());
         List<DocumentType> documentsRequiringOtherDocuments = CityHall.getDocumentsRequiringOtherDocuments(documentTypes);
-       Collections.shuffle(documentTypes);
+        Collections.shuffle(documentTypes);
 
         List<Office> offices = cityHall.generateOffices(documentTypes);
         Map<DocumentType, Office> typeOfficeMap = CityHall.connectTypesAndOffices(documentTypes, offices);

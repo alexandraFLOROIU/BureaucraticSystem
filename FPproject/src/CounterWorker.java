@@ -25,15 +25,15 @@ class CounterWorker implements Runnable {
                 }
                 DocumentRequest dr = office.getRequests().take();
                 ClientWorker clientWorker = this.clientWorkerMap.get(dr.getClient());
-                System.out.println(counterName + ": Processing request from client worker " + clientWorker.id + ".");
-                Thread.sleep(100); // sign document
+                System.out.println(counterName + ": Inviting client " + clientWorker.id + ".");
+                Thread.sleep(100);
                 synchronized (clientWorker) {
                     clientWorker.setLastReceivedDocument(new Document(
-                            dr.getType(), "office " + office.getId() + " - worker " + this.id
+                            dr.getType(), "office " + office.getId() + " - counter " + this.id
                     ));
                     clientWorker.notify();
                 }
-                System.out.println(counterName + ": Notified client worker " + clientWorker.id + ".");
+                System.out.println(counterName + ": Notified client " + clientWorker.id + ".");
             } catch (InterruptedException e) {
                 break;
             }
