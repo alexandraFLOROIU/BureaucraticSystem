@@ -32,6 +32,13 @@ public class Main {
             );
             ClientWorker clientWorker = new ClientWorker(i, client, typeOfficeMap);
             clientWorkerMap.put(client, clientWorker);
+            System.out.println("Client " + clientWorker.id + " want to get document " + client.getRequiredType().getId() + " named " + client.getRequiredType().getName());
+            StringBuilder requiredDocs = new StringBuilder();
+            for(DocumentType d : client.getRequiredType().getRequiredDocs()){
+                requiredDocs.append(d.getName()).append(" from office " + typeOfficeMap.get(d).getId()).append(", ");
+            }
+            requiredDocs.setLength(requiredDocs.length() - 2);
+            System.out.println("For recieving that document, the client needs: " + requiredDocs);
             Thread thread = new Thread(clientWorker);
             thread.start();
             clientThreads.add(thread);
