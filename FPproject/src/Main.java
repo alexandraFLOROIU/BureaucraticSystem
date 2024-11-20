@@ -28,6 +28,7 @@ public class Main {
 
         for (int i = 0; i < CityHall.NUM_CLIENTS; ++i) {
             Client client = new Client(
+                    //the client need to request a document with at least one dependency and it's random
                     documentsRequiringOtherDocuments.get(CityHall.rnd.nextInt(documentsRequiringOtherDocuments.size()))
             );
             ClientWorker clientWorker = new ClientWorker(i, client, typeOfficeMap);
@@ -61,8 +62,8 @@ public class Main {
         }
 
         for (Thread thread : counterThreads) {
-            thread.interrupt();
-            thread.join();
+            thread.interrupt();                     //intrerupts every counter
+            thread.join();                          //joins and waits for everyone to finish
         }
     }
 }
