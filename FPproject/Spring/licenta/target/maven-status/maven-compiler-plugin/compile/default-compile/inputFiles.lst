@@ -1,15 +1,12 @@
-c:\Home\Cipak\Download\2024.09.15 - portofolii\src\main\java\ro\upt\ac\conventii\Application.java
-c:\Home\Cipak\Download\2024.09.15 - portofolii\src\main\java\ro\upt\ac\conventii\cadruDidactic\CadruDidacticRepository.java
-c:\Home\Cipak\Download\2024.09.15 - portofolii\src\main\java\ro\upt\ac\conventii\MvcConfig.java
-c:\Home\Cipak\Download\2024.09.15 - portofolii\src\main\java\ro\upt\ac\conventii\student\StudentController.java
-c:\Home\Cipak\Download\2024.09.15 - portofolii\src\main\java\ro\upt\ac\conventii\companie\CompanieController.java
-c:\Home\Cipak\Download\2024.09.15 - portofolii\src\main\java\ro\upt\ac\conventii\conventie\Tutore.java
-c:\Home\Cipak\Download\2024.09.15 - portofolii\src\main\java\ro\upt\ac\conventii\student\Student.java
-c:\Home\Cipak\Download\2024.09.15 - portofolii\src\main\java\ro\upt\ac\conventii\companie\Companie.java
-c:\Home\Cipak\Download\2024.09.15 - portofolii\src\main\java\ro\upt\ac\conventii\companie\CompanieRepository.java
-c:\Home\Cipak\Download\2024.09.15 - portofolii\src\main\java\ro\upt\ac\conventii\conventie\ConventieController.java
-c:\Home\Cipak\Download\2024.09.15 - portofolii\src\main\java\ro\upt\ac\conventii\student\StudentRepository.java
-c:\Home\Cipak\Download\2024.09.15 - portofolii\src\main\java\ro\upt\ac\conventii\cadruDidactic\CadruDidacticController.java
-c:\Home\Cipak\Download\2024.09.15 - portofolii\src\main\java\ro\upt\ac\conventii\conventie\Conventie.java
-c:\Home\Cipak\Download\2024.09.15 - portofolii\src\main\java\ro\upt\ac\conventii\cadruDidactic\CadruDidactic.java
-c:\Home\Cipak\Download\2024.09.15 - portofolii\src\main\java\ro\upt\ac\conventii\conventie\ConventieRepository.java
+D:\PCBE\FlowerPower\FPproject\Spring\licenta\src\main\java\BeaureaticSystems\office\Office.java
+D:\PCBE\FlowerPower\FPproject\Spring\licenta\src\main\java\BeaureaticSystems\SecurityConfig.java
+D:\PCBE\FlowerPower\FPproject\Spring\licenta\src\main\java\BeaureaticSystems\document\DocumentTypeRepository.java
+D:\PCBE\FlowerPower\FPproject\Spring\licenta\src\main\java\BeaureaticSystems\Application.java
+D:\PCBE\FlowerPower\FPproject\Spring\licenta\src\main\java\BeaureaticSystems\document\DocumentType.java
+D:\PCBE\FlowerPower\FPproject\Spring\licenta\src\main\java\BeaureaticSystems\MvcConfig.java
+D:\PCBE\FlowerPower\FPproject\Spring\licenta\src\main\java\BeaureaticSystems\cityhall\CityHallService.java
+D:\PCBE\FlowerPower\FPproject\Spring\licenta\src\main\java\BeaureaticSystems\document\DocumentTypeController.java
+D:\PCBE\FlowerPower\FPproject\Spring\licenta\src\main\java\BeaureaticSystems\office\OfficeRepository.java
+D:\PCBE\FlowerPower\FPproject\Spring\licenta\src\main\java\BeaureaticSystems\cityhall\CityHall.java
+D:\PCBE\FlowerPower\FPproject\Spring\licenta\src\main\java\BeaureaticSystems\cityhall\CityHallController.java
+D:\PCBE\FlowerPower\FPproject\Spring\licenta\src\main\java\BeaureaticSystems\document\DocumentTypeService.java

@@ -1,0 +1,12 @@
+BeaureaticSystems\Application.class
+BeaureaticSystems\MvcConfig.class
+BeaureaticSystems\office\Office.class
+BeaureaticSystems\SecurityConfig.class
+BeaureaticSystems\office\OfficeRepository.class
+BeaureaticSystems\document\DocumentType.class
+BeaureaticSystems\document\DocumentTypeService.class
+BeaureaticSystems\cityhall\CityHallController.class
+BeaureaticSystems\document\DocumentTypeRepository.class
+BeaureaticSystems\cityhall\CityHall.class
+BeaureaticSystems\cityhall\CityHallService.class
+BeaureaticSystems\document\DocumentTypeController.class
