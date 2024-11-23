@@ -1,21 +1,63 @@
 package BeaureaticSystems.office;
 
 import BeaureaticSystems.document.DocumentType;
+import BeaureaticSystems.document.DocumentTypeService;
+import BeaureaticSystems.errors.ErrorResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+import static org.springframework.web.servlet.function.ServerResponse.status;
 
 @RestController
 @AllArgsConstructor
 public class OfficeController {
     private OfficeService officeService;
 
+    @Autowired
+    private DocumentTypeService documentTypeService;
+
     @PostMapping("/create-office")
     public ResponseEntity createOffice(@RequestBody Office office) {
         officeService.createOffice(office);
         return new ResponseEntity<>(office, HttpStatus.CREATED);
+    }
+
+    @PatchMapping("update-documents/{officeId}")
+    public ResponseEntity updateCompatibleDocumentTypes(
+            @PathVariable int officeId,
+            @RequestBody DocumentType documentType) {
+        // Găsește Office-ul după ID
+        Office office = officeService.getOfficeById(officeId);
+        if (office==null) {
+            ErrorResponse errorResponse = new ErrorResponse("Office not found");
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(errorResponse);
+        }
+        DocumentType doc = documentTypeService.getDocumentTypeById(documentType.getId());
+        if (doc==null) {
+            ErrorResponse errorResponse = new ErrorResponse("Document not found");
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(errorResponse);
+        }
+        if(office.getCompatibleDocumentTypes().contains(doc)){
+            ErrorResponse errorResponse = new ErrorResponse("Document already compatible");
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(errorResponse);
+        }
+        office.getCompatibleDocumentTypes().add(doc);
+        // Salvează Office-ul actualizat
+        Office updatedOffice = officeService.saveOffice(office);
+
+        // Returnează Office-ul actualizat
+        return ResponseEntity.ok(updatedOffice);
     }
 }
