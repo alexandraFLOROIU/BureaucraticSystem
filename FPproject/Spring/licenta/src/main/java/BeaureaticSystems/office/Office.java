@@ -3,13 +3,13 @@ package BeaureaticSystems.office;
 import BeaureaticSystems.counter.Counter;
 import BeaureaticSystems.document.DocumentType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 
 import java.util.List;
 
 @Entity
 public class Office {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @OneToMany
@@ -18,16 +18,6 @@ public class Office {
     @OneToMany
     private List<Counter> counters;
 
-    private int numCounters;
-
-    public Office() {
-    }
-
-    public Office(int id, List<DocumentType> compatibleDocumentTypes, int numCounters) {
-        this.id = id;
-        this.compatibleDocumentTypes = compatibleDocumentTypes;
-        this.numCounters = numCounters;
-    }
 
     public int getId() {
         return id;
@@ -45,11 +35,12 @@ public class Office {
         this.compatibleDocumentTypes = compatibleDocumentTypes;
     }
 
-    public int getNumCounters() {
-        return numCounters;
+    public List<Counter> getCounters() {
+        return counters;
     }
 
-    public void setNumCounters(int numCounters) {
-        this.numCounters = numCounters;
+    public void setCounters(List<Counter> counters) {
+        this.counters = counters;
     }
+
 }
