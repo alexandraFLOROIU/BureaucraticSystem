@@ -9,6 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 public class DocumentType {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToMany
     @JoinTable(
