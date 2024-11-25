@@ -18,16 +18,16 @@ public class DocumentTypeController {
     }
 
     @PostMapping("/create-document")
-    public ResponseEntity createDocumentType(@RequestBody DocumentType docType) {
+    public ResponseEntity<DocumentType> createDocumentType(@RequestBody DocumentType docType) {
         documentTypeService.createDocumentType(docType);
         return new ResponseEntity<>(docType, HttpStatus.CREATED);
     }
 
     @GetMapping("/doc/{id}")
-    public ResponseEntity getDocumentTypeById(@PathVariable int id) {
+    public ResponseEntity<DocumentType> getDocumentTypeById(@PathVariable int id) {
         DocumentType d=documentTypeService.getDocumentTypeById(id);
         if(d==null)
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
             return new ResponseEntity<>(d, HttpStatus.OK);
     }

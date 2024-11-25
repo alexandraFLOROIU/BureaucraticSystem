@@ -18,4 +18,6 @@ public class DocumentTypeService {
         Optional<DocumentType> documentType = documentTypeRepository.findById(id);
         return documentType.orElse(null);
     }
+
+
 }

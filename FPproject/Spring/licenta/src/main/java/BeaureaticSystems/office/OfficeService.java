@@ -32,4 +32,8 @@ public class OfficeService {
         officeRepository.save(office);
         return office;
     }
+
+    public Iterable<Office> getAllOffices() {
+         return officeRepository.findAll();
+    }
 }

@@ -28,6 +28,12 @@ public class OfficeController {
         return new ResponseEntity<>(office, HttpStatus.CREATED);
     }
 
+    @GetMapping("/offices")
+    public ResponseEntity getAllOffices() {
+        Iterable<Office> o = officeService.getAllOffices();
+        return new ResponseEntity<>(o, HttpStatus.OK);
+    }
+
     @PatchMapping("update-documents/{officeId}")
     public ResponseEntity updateCompatibleDocumentTypes(
             @PathVariable int officeId,
@@ -40,6 +46,7 @@ public class OfficeController {
                     .status(HttpStatus.NOT_FOUND)
                     .body(errorResponse);
         }
+
         DocumentType doc = documentTypeService.getDocumentTypeById(documentType.getId());
         if (doc==null) {
             ErrorResponse errorResponse = new ErrorResponse("Document not found");
@@ -47,6 +54,7 @@ public class OfficeController {
                     .status(HttpStatus.NOT_FOUND)
                     .body(errorResponse);
         }
+
         if(office.getCompatibleDocumentTypes().contains(doc)){
             ErrorResponse errorResponse = new ErrorResponse("Document already compatible");
             return ResponseEntity
