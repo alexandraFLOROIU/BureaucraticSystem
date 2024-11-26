@@ -11,7 +11,7 @@ public class CounterController {
     private CounterService counterService;
 
     @PostMapping("/create-counter")
-    public ResponseEntity createCounter(@RequestBody Counter counter) {
+    public ResponseEntity<Counter> createCounter(@RequestBody Counter counter) {
         counterService.createCounter(counter);
         return new ResponseEntity<>(counter, HttpStatus.CREATED);
     }

@@ -9,6 +9,7 @@ BeaureaticSystems\SecurityConfig.class
 BeaureaticSystems\office\OfficeController.class
 BeaureaticSystems\counter\Counter.class
 BeaureaticSystems\office\OfficeRepository.class
+BeaureaticSystems\clients\ClientDocument.class
 BeaureaticSystems\document\DocumentType.class
 BeaureaticSystems\document\DocumentTypeService.class
 BeaureaticSystems\counter\CounterRepository.class
