@@ -1,8 +1,10 @@
 package BeaureaticSystems.document;
 
+import BeaureaticSystems.clients.Client;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,6 +13,7 @@ public class DocumentType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @ManyToMany
     @JoinTable(
             name = "document_type_dependencies",

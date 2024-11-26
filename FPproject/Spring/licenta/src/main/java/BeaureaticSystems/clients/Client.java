@@ -5,11 +5,13 @@ import BeaureaticSystems.document.DocumentType;
 import BeaureaticSystems.document.DocumentTypeService;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Setter
 public class Client implements Runnable {
     // Getters and Setters
     @Getter
@@ -20,8 +22,13 @@ public class Client implements Runnable {
     @Getter
     private String name;
 
-    @Getter
     @ManyToMany
+    @JoinTable(
+            name = "client_owned_documents", // Numele tabelei intermediare
+            joinColumns = @JoinColumn(name = "client_id"), // Coloana pentru Client
+            inverseJoinColumns = @JoinColumn(name = "document_id") // Coloana pentru DocumentType
+    )
+    @Getter
     private List<DocumentType> ownedDocuments = new ArrayList<>();
 
     @Transient
