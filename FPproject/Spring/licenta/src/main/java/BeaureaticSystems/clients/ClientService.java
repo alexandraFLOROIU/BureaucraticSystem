@@ -1,16 +1,15 @@
 package BeaureaticSystems.clients;
 
 import BeaureaticSystems.document.DocumentType;
-import BeaureaticSystems.document.DocumentTypeRepository;
 import BeaureaticSystems.document.DocumentTypeService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
 
 @Service
 @AllArgsConstructor
@@ -20,7 +19,7 @@ public class ClientService {
     @Autowired
     private DocumentTypeService documentTypeService;
 
-    private Executor taskExecutor;
+    private final ExecutorService executorService = Executors.newFixedThreadPool(5);
     public Client createClient(String name, List<DocumentType> ownedDocuments) {
         Client client = new Client(name);
         client.setOwnedDocuments(ownedDocuments);
@@ -33,8 +32,7 @@ public class ClientService {
 
         DocumentType targetDocument = documentTypeService.getDocumentTypeById(documentId);
 
-        client.initialize(targetDocument);
-        taskExecutor.execute(client);
+        executorService.submit(() -> processClientDocuments(client, targetDocument));
     }
 
     public Client getClient(int clientId) {
@@ -56,5 +54,59 @@ public class ClientService {
         }
         client.getOwnedDocuments().add(targetDocument);
         return clientRepository.save(client);
+    }
+
+//    private void processDocument(DocumentType document) {
+//        if (ownedDocuments.contains(document)) {
+//            System.out.println("Client " + id + " already has document: " + document.getName());
+//            return;
+//        }
+//
+//        List<DocumentType> dependencies = targetDocument.getRequiredDocs();
+//        for (DocumentType dependency : dependencies) {
+//            if (!ownedDocuments.contains(dependency)) {
+//                System.out.println("Client " + id + " processing dependency: " + dependency.getName());
+//                processDocument(dependency);
+//            }
+//        }
+//
+//        // Simulate processing
+//        try {
+//            System.out.println("Client " + id + " is processing document: " + document.getName());
+//            Thread.sleep(1000); // Simulate time to process the document
+//        } catch (InterruptedException e) {
+//            Thread.currentThread().interrupt();
+//        }
+//
+//        ownedDocuments.add(document);
+//        System.out.println("Client " + id + " obtained document: " + document.getName());
+//    }
+
+    private void processClientDocuments(Client client, DocumentType targetDocument) {
+        System.out.println("Client " + client.getId() + " started process to obtain: " + targetDocument.getName());
+
+        if (client.getOwnedDocuments().contains(targetDocument)) {
+            System.out.println("Client " + client.getId() + " already owns document: " + targetDocument.getName());
+            return;
+        }
+
+        for (DocumentType dependency : targetDocument.getRequiredDocs()) {
+            if (!client.getOwnedDocuments().contains(dependency)) {
+                System.out.println("Client " + client.getId() + " processing dependency: " + dependency.getName());
+                processClientDocuments(client, dependency);
+            }
+        }
+
+        // Simulare procesare document
+        try {
+            System.out.println("Client " + client.getId() + " is processing document: " + targetDocument.getName());
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+        client.getOwnedDocuments().add(targetDocument);
+        clientRepository.save(client);
+        System.out.println("Client " + client.getId() + " successfully obtained document: " + targetDocument.getName());
     }
 }

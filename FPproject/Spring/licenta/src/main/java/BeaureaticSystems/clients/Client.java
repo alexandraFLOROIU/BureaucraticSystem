@@ -2,22 +2,19 @@
 package BeaureaticSystems.clients;
 
 import BeaureaticSystems.document.DocumentType;
-import BeaureaticSystems.document.DocumentTypeService;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
-public class Client implements Runnable {
+public class Client {
     // Getters and Setters
 
     @Id
@@ -50,38 +47,26 @@ public class Client implements Runnable {
         this.targetDocument = targetDocument;
     }
 
-    @Override
-    public void run() {
-        System.out.println("Client " + id + " started process to obtain: " + targetDocument.getName());
-        processDocument(targetDocument);
-        System.out.println("Client " + id + " successfully obtained: " + targetDocument.getName());
-      //  clientService.addDocumentToClient(this.id, targetDocument.getId()); // Actualizare stocare în baza de date
+//    public void setOwnedDocuments(List<DocumentType> ownedDocuments) {
+//        this.ownedDocuments = ownedDocuments;
+//    }
+//
+//    public List<DocumentType> getOwnedDocuments() {
+//        return ownedDocuments;
+//    }
+
+    public int getId() {
+        return id;
     }
 
-    private void processDocument(DocumentType document) {
-        if (ownedDocuments.contains(document)) {
-            System.out.println("Client " + id + " already has document: " + document.getName());
-            return;
-        }
+//    @Override
+//    public void run() {
+//        System.out.println("Client " + id + " started process to obtain: " + targetDocument.getName());
+//        processDocument(targetDocument);
+//        System.out.println("Client " + id + " successfully obtained: " + targetDocument.getName());
+//      //  clientService.addDocumentToClient(this.id, targetDocument.getId()); // Actualizare stocare în baza de date
+//    }
 
-        List<DocumentType> dependencies = targetDocument.getRequiredDocs();
-        for (DocumentType dependency : dependencies) {
-            if (!ownedDocuments.contains(dependency)) {
-                System.out.println("Client " + id + " processing dependency: " + dependency.getName());
-                processDocument(dependency);
-            }
-        }
 
-        // Simulate processing
-        try {
-            System.out.println("Client " + id + " is processing document: " + document.getName());
-            Thread.sleep(1000); // Simulate time to process the document
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-
-        ownedDocuments.add(document);
-        System.out.println("Client " + id + " obtained document: " + document.getName());
-    }
 
 }
