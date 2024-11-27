@@ -13,4 +13,12 @@ public class ClientDocument {
     private String name;
 
     private List<DocumentType> ownedDocuments;
+
+    public String getName() {
+        return name;
+    }
+
+    public List<DocumentType> getOwnedDocuments() {
+        return ownedDocuments;
+    }
 }

@@ -3,10 +3,12 @@ package BeaureaticSystems.office;
 import BeaureaticSystems.counter.Counter;
 import BeaureaticSystems.document.DocumentType;
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
 public class Office {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

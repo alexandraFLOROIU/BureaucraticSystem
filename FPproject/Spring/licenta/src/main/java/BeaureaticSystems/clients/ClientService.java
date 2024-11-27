@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.Executor;
 
 @Service
 @AllArgsConstructor
@@ -19,6 +20,7 @@ public class ClientService {
     @Autowired
     private DocumentTypeService documentTypeService;
 
+    private Executor taskExecutor;
     public Client createClient(String name, List<DocumentType> ownedDocuments) {
         Client client = new Client(name);
         client.setOwnedDocuments(ownedDocuments);
@@ -32,8 +34,7 @@ public class ClientService {
         DocumentType targetDocument = documentTypeService.getDocumentTypeById(documentId);
 
         client.initialize(targetDocument);
-        Thread clientThread = new Thread(client);
-        clientThread.start();
+        taskExecutor.execute(client);
     }
 
     public Client getClient(int clientId) {

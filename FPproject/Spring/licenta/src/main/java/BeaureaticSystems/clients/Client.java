@@ -5,16 +5,21 @@ import BeaureaticSystems.document.DocumentType;
 import BeaureaticSystems.document.DocumentTypeService;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Setter
+@Getter
+@NoArgsConstructor
 public class Client implements Runnable {
     // Getters and Setters
-    @Getter
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -34,8 +39,8 @@ public class Client implements Runnable {
     @Transient
     private DocumentType targetDocument;
 
-    public Client() {
-    }
+  // @Autowired
+  // private ClientService clientService;
 
     public Client(String name) {
         this.name = name;
@@ -50,6 +55,7 @@ public class Client implements Runnable {
         System.out.println("Client " + id + " started process to obtain: " + targetDocument.getName());
         processDocument(targetDocument);
         System.out.println("Client " + id + " successfully obtained: " + targetDocument.getName());
+      //  clientService.addDocumentToClient(this.id, targetDocument.getId()); // Actualizare stocare în baza de date
     }
 
     private void processDocument(DocumentType document) {
@@ -77,4 +83,5 @@ public class Client implements Runnable {
         ownedDocuments.add(document);
         System.out.println("Client " + id + " obtained document: " + document.getName());
     }
+
 }
