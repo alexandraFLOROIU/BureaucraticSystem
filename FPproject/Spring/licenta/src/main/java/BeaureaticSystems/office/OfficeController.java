@@ -1,5 +1,6 @@
 package BeaureaticSystems.office;
 
+import BeaureaticSystems.clients.Client;
 import BeaureaticSystems.document.DocumentType;
 import BeaureaticSystems.document.DocumentTypeService;
 import BeaureaticSystems.errors.ErrorResponse;
@@ -17,6 +18,7 @@ import static org.springframework.web.servlet.function.ServerResponse.status;
 @RestController
 @AllArgsConstructor
 public class OfficeController {
+    @Autowired
     private OfficeService officeService;
 
     @Autowired
@@ -28,6 +30,19 @@ public class OfficeController {
         return new ResponseEntity<>(office, HttpStatus.CREATED);
     }
 
+    @PostMapping("/{officeId}/request-document")
+    public ResponseEntity requestDocument(
+            @PathVariable int officeId,
+            @RequestParam int clientId,
+            @RequestParam int documentId
+    ) {
+        try {
+            Client client = officeService.requestDocument(officeId, clientId, documentId);
+            return ResponseEntity.status(HttpStatus.CREATED).body(client);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
     @GetMapping("/offices")
     public ResponseEntity getAllOffices() {
         Iterable<Office> o = officeService.getAllOffices();

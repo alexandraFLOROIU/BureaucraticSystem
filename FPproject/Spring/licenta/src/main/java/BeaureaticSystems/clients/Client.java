@@ -47,16 +47,20 @@ public class Client {
         this.targetDocument = targetDocument;
     }
 
-//    public void setOwnedDocuments(List<DocumentType> ownedDocuments) {
-//        this.ownedDocuments = ownedDocuments;
-//    }
-//
-//    public List<DocumentType> getOwnedDocuments() {
-//        return ownedDocuments;
-//    }
+    public void setOwnedDocuments(List<DocumentType> ownedDocuments) {
+        this.ownedDocuments = ownedDocuments;
+    }
+
+    public List<DocumentType> getOwnedDocuments() {
+        return ownedDocuments;
+    }
 
     public int getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
 //    @Override

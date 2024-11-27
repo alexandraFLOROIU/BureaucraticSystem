@@ -26,7 +26,7 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
-    public void startClientProcess(int clientId, int documentId) {
+   public void startClientProcess(int clientId, int documentId) {
         Client client = clientRepository.findById(clientId)
                 .orElseThrow(() -> new RuntimeException("Client not found"));
 
@@ -55,32 +55,6 @@ public class ClientService {
         client.getOwnedDocuments().add(targetDocument);
         return clientRepository.save(client);
     }
-
-//    private void processDocument(DocumentType document) {
-//        if (ownedDocuments.contains(document)) {
-//            System.out.println("Client " + id + " already has document: " + document.getName());
-//            return;
-//        }
-//
-//        List<DocumentType> dependencies = targetDocument.getRequiredDocs();
-//        for (DocumentType dependency : dependencies) {
-//            if (!ownedDocuments.contains(dependency)) {
-//                System.out.println("Client " + id + " processing dependency: " + dependency.getName());
-//                processDocument(dependency);
-//            }
-//        }
-//
-//        // Simulate processing
-//        try {
-//            System.out.println("Client " + id + " is processing document: " + document.getName());
-//            Thread.sleep(1000); // Simulate time to process the document
-//        } catch (InterruptedException e) {
-//            Thread.currentThread().interrupt();
-//        }
-//
-//        ownedDocuments.add(document);
-//        System.out.println("Client " + id + " obtained document: " + document.getName());
-//    }
 
     private void processClientDocuments(Client client, DocumentType targetDocument) {
         System.out.println("Client " + client.getId() + " started process to obtain: " + targetDocument.getName());
