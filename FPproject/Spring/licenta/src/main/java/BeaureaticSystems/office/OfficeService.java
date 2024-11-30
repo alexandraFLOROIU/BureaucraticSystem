@@ -7,6 +7,7 @@ import BeaureaticSystems.document.DocumentTypeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -63,7 +64,9 @@ public class OfficeService {
     }
 
     // Procesarea cererii unui document
-    private void processDocumentRequest(Office office, Client client, DocumentType targetDocument) {
+
+    @Transactional
+    protected void processDocumentRequest(Office office, Client client, DocumentType targetDocument) {
         synchronized (client) {
             System.out.println("Office " + office.getId() + ": Processing request for client " + client.getId() + " - Document: " + targetDocument.getName());
 
@@ -77,7 +80,18 @@ public class OfficeService {
             for (DocumentType dependency : targetDocument.getRequiredDocs()) {
                 if (!client.getOwnedDocuments().contains(dependency)) {
                     System.out.println("Processing dependency for client " + client.getId() + ": " + dependency.getName());
+                    //get next office
+//                    if(office.getCompatibleDocumentTypes().contains(dependency)) {
+//                        System.out.println("a gasit documentul "+dependency.getName()+" biruoul "+office.getId());
                     processDocumentRequest(office, client, dependency);
+//                    }else{
+//                        Office o = getOfficeWithDocument(dependency);
+//                        if (o == null) {throw new RuntimeException("cant find office");}
+//                        else{
+//                            System.out.println("a gasit documentul "+dependency.getName()+" biruoul "+o.getId());
+//                            processDocumentRequest(o, client, dependency);
+//                        }
+//                    }
                 }
             }
 
@@ -95,4 +109,13 @@ public class OfficeService {
             System.out.println("Client " + client.getId() + " successfully received document: " + targetDocument.getName());
         }
     }
+//    private Office getOfficeWithDocument(DocumentType documentType) {
+//        Iterable<Office> offices = officeRepository.findAll();
+//        for (Office office : offices) {
+//            if (office.getCompatibleDocumentTypes().contains(documentType)) {
+//                return office;
+//            }
+//        }
+//        return null;
+//    }
 }
