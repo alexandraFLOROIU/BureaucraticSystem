@@ -11,11 +11,12 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/client")
 public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @PostMapping("create-client")
+    @PostMapping()
     public ResponseEntity<Client> createClient(@RequestBody ClientDocument clientDocument) {
         String name = clientDocument.getName();
         List<DocumentType> ownedDocuments = clientDocument.getOwnedDocuments();
@@ -33,7 +34,7 @@ public class ClientController {
         }
     }
 
-    @PatchMapping("/add-document/{id}")
+    @PatchMapping("/{id}/document")
     public ResponseEntity addDocument(@PathVariable int id, @RequestBody int docId) {
         try{
         Client servedClient = clientService.addDocumentToClient(id,docId);

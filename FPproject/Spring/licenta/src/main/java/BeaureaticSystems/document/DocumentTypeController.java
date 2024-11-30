@@ -8,22 +8,23 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/document")
 public class DocumentTypeController {
 
     private DocumentTypeService documentTypeService;
-    @GetMapping("/")
+    @GetMapping()
     public String root()
     {
         return "index";
     }
 
-    @PostMapping("/create-document")
+    @PostMapping()
     public ResponseEntity<DocumentType> createDocumentType(@RequestBody DocumentType docType) {
         documentTypeService.createDocumentType(docType);
         return new ResponseEntity<>(docType, HttpStatus.CREATED);
     }
 
-    @GetMapping("/doc/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<DocumentType> getDocumentTypeById(@PathVariable int id) {
         DocumentType d=documentTypeService.getDocumentTypeById(id);
         if(d==null)

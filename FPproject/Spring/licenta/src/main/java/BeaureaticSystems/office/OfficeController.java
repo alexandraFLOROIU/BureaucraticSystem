@@ -17,6 +17,7 @@ import static org.springframework.web.servlet.function.ServerResponse.status;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/office")
 public class OfficeController {
     @Autowired
     private OfficeService officeService;
@@ -24,13 +25,13 @@ public class OfficeController {
     @Autowired
     private DocumentTypeService documentTypeService;
 
-    @PostMapping("/create-office")
+    @PostMapping
     public ResponseEntity createOffice(@RequestBody Office office) {
         officeService.createOffice(office);
         return new ResponseEntity<>(office, HttpStatus.CREATED);
     }
 
-    @PostMapping("/{officeId}/request-document")
+    @PostMapping("/{officeId}/document")
     public ResponseEntity requestDocument(
             @PathVariable int officeId,
             @RequestParam int clientId,
@@ -43,13 +44,13 @@ public class OfficeController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @GetMapping("/offices")
+    @GetMapping()
     public ResponseEntity getAllOffices() {
         Iterable<Office> o = officeService.getAllOffices();
         return new ResponseEntity<>(o, HttpStatus.OK);
     }
 
-    @PatchMapping("update-documents/{officeId}")
+    @PatchMapping("{officeId}/document")
     public ResponseEntity updateCompatibleDocumentTypes(
             @PathVariable int officeId,
             @RequestBody DocumentType documentType) {
