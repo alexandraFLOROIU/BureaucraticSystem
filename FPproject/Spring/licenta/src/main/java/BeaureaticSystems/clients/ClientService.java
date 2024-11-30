@@ -26,15 +26,6 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
-   public void startClientProcess(int clientId, int documentId) {
-        Client client = clientRepository.findById(clientId)
-                .orElseThrow(() -> new RuntimeException("Client not found"));
-
-        DocumentType targetDocument = documentTypeService.getDocumentTypeById(documentId);
-
-        executorService.submit(() -> processClientDocuments(client, targetDocument));
-    }
-
     public Client getClient(int clientId) {
         Optional<Client>client = clientRepository.findById(clientId);
         return client.orElseThrow(null);
@@ -54,33 +45,5 @@ public class ClientService {
         }
         client.getOwnedDocuments().add(targetDocument);
         return clientRepository.save(client);
-    }
-
-    private void processClientDocuments(Client client, DocumentType targetDocument) {
-        System.out.println("Client " + client.getId() + " started process to obtain: " + targetDocument.getName());
-
-        if (client.getOwnedDocuments().contains(targetDocument)) {
-            System.out.println("Client " + client.getId() + " already owns document: " + targetDocument.getName());
-            return;
-        }
-
-        for (DocumentType dependency : targetDocument.getRequiredDocs()) {
-            if (!client.getOwnedDocuments().contains(dependency)) {
-                System.out.println("Client " + client.getId() + " processing dependency: " + dependency.getName());
-                processClientDocuments(client, dependency);
-            }
-        }
-
-        // Simulare procesare document
-        try {
-            System.out.println("Client " + client.getId() + " is processing document: " + targetDocument.getName());
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-
-        client.getOwnedDocuments().add(targetDocument);
-        clientRepository.save(client);
-        System.out.println("Client " + client.getId() + " successfully obtained document: " + targetDocument.getName());
     }
 }
