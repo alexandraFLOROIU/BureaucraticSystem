@@ -67,6 +67,7 @@ public class OfficeService {
     @Transactional
     private void processDocumentRequest(Client client, DocumentType targetDocument) {
         System.out.println("intru in metoda process");
+
         synchronized (client) {
            // System.out.println("Office " + office.getId() + ": Processing request for client " + client.getId() + " - Document: " + targetDocument.getName());
 
