@@ -14,7 +14,7 @@ public class Office {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<DocumentType> compatibleDocumentTypes;
 
     @OneToMany

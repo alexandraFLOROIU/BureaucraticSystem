@@ -11,12 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 @NoArgsConstructor
 public class Counter {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @ManyToOne
-    private DocumentType request;
+    public int getId() {
+        return id;
+    }
 
-    @ManyToOne
-    private Office office;
-
+    public void setId(int id) {
+        this.id = id;
+    }
 }

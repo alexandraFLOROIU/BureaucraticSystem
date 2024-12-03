@@ -1,6 +1,8 @@
 package BeaureaticSystems.office;
 
 import BeaureaticSystems.clients.Client;
+import BeaureaticSystems.counter.Counter;
+import BeaureaticSystems.counter.CounterService;
 import BeaureaticSystems.document.DocumentType;
 import BeaureaticSystems.document.DocumentTypeService;
 import BeaureaticSystems.errors.ErrorResponse;
@@ -25,20 +27,23 @@ public class OfficeController {
     @Autowired
     private DocumentTypeService documentTypeService;
 
+    @Autowired
+    private CounterService counterService;
+
     @PostMapping
     public ResponseEntity createOffice(@RequestBody Office office) {
         officeService.createOffice(office);
         return new ResponseEntity<>(office, HttpStatus.CREATED);
     }
 
-    @PostMapping("/{officeId}/document")
+    @PostMapping("/document")
     public ResponseEntity requestDocument(
-            @PathVariable int officeId,
+          //  @PathVariable int officeId,
             @RequestParam int clientId,
             @RequestParam int documentId
     ) {
         try {
-            Client client = officeService.requestDocument(officeId, clientId, documentId);
+            Client client = officeService.requestDocument(clientId, documentId);
             return ResponseEntity.status(HttpStatus.CREATED).body(client);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -82,6 +87,43 @@ public class OfficeController {
         Office updatedOffice = officeService.saveOffice(office);
 
         // Returnează Office-ul actualizat
+        return ResponseEntity.ok(updatedOffice);
+    }
+
+    @PatchMapping("{officeId}/counter")
+    public ResponseEntity updateCounters(
+            @PathVariable int officeId,
+            @RequestBody Counter counter) {
+        // Găsește Office-ul după ID
+        Office office = officeService.getOfficeById(officeId);
+        if (office==null) {
+            ErrorResponse errorResponse = new ErrorResponse("Office not found");
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(errorResponse);
+        }
+
+        Counter cnt = counterService.getCounterById(counter.getId());
+        if (cnt==null) {
+            ErrorResponse errorResponse = new ErrorResponse("Counter not found");
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(errorResponse);
+        }
+        Iterable<Office> o = officeService.getAllOffices();
+        for(Office o1 : o) {
+            if (office.getCounters().contains(cnt)) {
+                ErrorResponse errorResponse = new ErrorResponse("Counter already exists in another office");
+                return ResponseEntity
+                        .status(HttpStatus.BAD_REQUEST)
+                        .body(errorResponse);
+            }
+        }
+        office.getCounters().add(cnt);
+        // Salvează Counter-ul actualizat
+        Office updatedOffice = officeService.saveOffice(office);
+
+        // Returnează Counter-ul actualizat
         return ResponseEntity.ok(updatedOffice);
     }
 }

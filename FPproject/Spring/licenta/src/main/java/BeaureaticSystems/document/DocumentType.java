@@ -14,7 +14,7 @@ public class DocumentType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "document_type_dependencies",
             joinColumns = @JoinColumn(name = "document_type_id"),

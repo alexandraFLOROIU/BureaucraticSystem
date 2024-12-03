@@ -51,6 +51,11 @@ public class Client {
         this.ownedDocuments = ownedDocuments;
     }
 
+    public void setTargetDocument(DocumentType targetDocument)
+    {
+        this.targetDocument = targetDocument;
+    }
+
     public List<DocumentType> getOwnedDocuments() {
         return ownedDocuments;
     }

@@ -46,4 +46,20 @@ public class ClientService {
         client.getOwnedDocuments().add(targetDocument);
         return clientRepository.save(client);
     }
+    public Client removeDocumentFromClient(int clientId, int docId) {
+        Client client = clientRepository.findById(clientId)
+                .orElseThrow(() -> new RuntimeException("Client not found with id: " + clientId));
+
+        // Filtrare pentru eliminarea documentului
+        boolean removed = client.getOwnedDocuments().removeIf(doc -> doc.getId() == docId);
+
+        if (!removed) {
+            throw new RuntimeException("Document not found for client: " + docId);
+        }
+
+        // Salvează modificările clientului
+        clientRepository.save(client);
+        return client;
+    }
+
 }

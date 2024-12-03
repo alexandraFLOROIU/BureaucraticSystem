@@ -35,4 +35,18 @@ public class ClientController {
                     .body(e.getMessage());
         }
     }
+    @DeleteMapping("/{id}/document")
+    public ResponseEntity<?> removeDocument(@PathVariable int id, @RequestBody int docId) {
+        try {
+            // Apelează metoda din service care elimină documentul
+            Client updatedClient = clientService.removeDocumentFromClient(id, docId);
+            return ResponseEntity.ok(updatedClient);
+        } catch (RuntimeException e) {
+            // Gestionare eroare dacă clientul sau documentul nu există
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(e.getMessage());
+        }
+    }
+
 }
