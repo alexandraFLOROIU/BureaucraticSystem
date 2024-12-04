@@ -14,6 +14,17 @@ public class Counter {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    // Enum pentru starea ghișeului
+    public enum Status {
+        BUSY,
+        AVAILABLE,
+        BREAK
+    }
+
+    // Atribut pentru starea curentă a ghișeului
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.AVAILABLE;
+
     public int getId() {
         return id;
     }
@@ -21,4 +32,13 @@ public class Counter {
     public void setId(int id) {
         this.id = id;
     }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
 }
