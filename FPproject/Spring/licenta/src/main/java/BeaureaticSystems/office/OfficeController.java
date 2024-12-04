@@ -43,7 +43,7 @@ public class OfficeController {
             @RequestParam int documentId
     ) {
         try {
-            Client client = officeService.requestDocument(clientId, documentId);
+            Client client = officeService.requestDocument(clientId, documentId).join();
             return ResponseEntity.status(HttpStatus.CREATED).body(client);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

@@ -17,7 +17,7 @@ public class Office {
     @OneToMany(fetch = FetchType.EAGER)
     private List<DocumentType> compatibleDocumentTypes;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Counter> counters;
 
 

@@ -24,7 +24,7 @@ public class Client {
     @Getter
     private String name;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "client_owned_documents", // Numele tabelei intermediare
             joinColumns = @JoinColumn(name = "client_id"), // Coloana pentru Client
