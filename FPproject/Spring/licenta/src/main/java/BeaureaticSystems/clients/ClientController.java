@@ -35,6 +35,21 @@ public class ClientController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<?> getClientByName(@RequestParam String name) {
+        try {
+            // Găsim clientul după nume folosind serviciul
+            Client client = clientService.getClientByName(name);
+
+            // Returnăm clientul găsit
+            return ResponseEntity.ok(client);
+        } catch (RuntimeException e) {
+            // În caz de eroare, returnăm un mesaj corespunzător
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+
     @PatchMapping("/{id}/document")
     public ResponseEntity addDocument(@PathVariable int id, @RequestBody int docId) {
         try{

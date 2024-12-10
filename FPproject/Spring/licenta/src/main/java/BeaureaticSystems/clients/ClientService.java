@@ -32,6 +32,11 @@ public class ClientService {
         return client.orElseThrow(null);
     }
 
+    public Client getClientByName(String name) {
+        return clientRepository.findByName(name)
+                .orElseThrow(() -> new RuntimeException("Client with name '" + name + "' not found"));
+    }
+
     public Client addDocumentToClient(int clientId, int documentId) {
         Client client = getClient(clientId);
         DocumentType targetDocument = documentTypeService.getDocumentTypeById(documentId);
