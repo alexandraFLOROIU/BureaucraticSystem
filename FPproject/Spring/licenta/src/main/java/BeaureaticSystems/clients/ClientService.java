@@ -20,6 +20,7 @@ public class ClientService {
     private DocumentTypeService documentTypeService;
 
     private final ExecutorService executorService = Executors.newFixedThreadPool(5);
+
     public Client createClient(String name, List<DocumentType> ownedDocuments) {
         Client client = new Client(name);
         client.setOwnedDocuments(ownedDocuments);

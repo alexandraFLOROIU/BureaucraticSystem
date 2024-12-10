@@ -72,59 +72,6 @@ public class OfficeService {
         return processDocumentRequest(client, targetDocument);
     }
 
-    // Procesarea cererii unui document
- //   @Transactional
-//    private void processDocumentRequest1(Client client, DocumentType targetDocument) {
-//        System.out.println("intru in metoda process");
-//
-//        synchronized (client) {
-//
-//            // Verificăm dacă clientul deține deja documentul
-//            if (client.getOwnedDocuments().contains(targetDocument)) {
-//                System.out.println("Client " + client.getId() + " already owns document: " + targetDocument.getName());
-//                return;
-//            } else {
-//                System.out.println("aici nu ajung");
-//                // Procesarea documentelor dependente
-//                for (DocumentType dependency : targetDocument.getRequiredDocs()) {
-//                    System.out.println("parcurg lista de dependente a targetDocument");
-//                    for (Office o : this.getAllOffices()) {
-//                        System.out.println("parcurg birouri");
-//
-//                        for (DocumentType doc : o.getCompatibleDocumentTypes()) {
-//                            if (doc.getId() == dependency.getId()) { // Compară doar pe baza ID-ului
-//
-//
-//                                System.out.println("verific documentu din birou");
-//                                if (!client.getOwnedDocuments().contains(dependency)) {
-//                                    System.out.println("verific daca clientu are dependenta");
-//                                    System.out.println("Processing dependency for client " + client.getId() + ": " + dependency.getName());
-//                                    processDocumentRequest(client, dependency);
-//                                } else {
-//                                    System.out.println("nu merge");
-//                                }
-//                            } else {
-//                                System.out.println("nu gaseste in birou documentul");
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//            // Simularea procesării documentului
-//            try {
-//                Thread.sleep(1000); // Simulare procesare
-//            } catch (InterruptedException e) {
-//                Thread.currentThread().interrupt();
-//            }
-//
-//            // Adăugarea documentului la client
-//            client.getOwnedDocuments().add(targetDocument);
-//            client.setTargetDocument(targetDocument);
-//            clientRepository.save(client);
-//            System.out.println("Client " + client.getId() + " successfully received document: " + targetDocument.getName());
-//        }
-//    }
-//
     private boolean containsDocument(List<DocumentType> documentTypes, DocumentType dependency) {
         for (DocumentType doc : documentTypes) {
             if (doc.getId() == dependency.getId()) { // Compară doar pe baza ID-ului

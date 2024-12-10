@@ -36,9 +36,6 @@ public class Client {
     @Transient
     private DocumentType targetDocument;
 
-  // @Autowired
-  // private ClientService clientService;
-
     public Client(String name) {
         this.name = name;
     }
@@ -67,15 +64,6 @@ public class Client {
     public String getName() {
         return name;
     }
-
-//    @Override
-//    public void run() {
-//        System.out.println("Client " + id + " started process to obtain: " + targetDocument.getName());
-//        processDocument(targetDocument);
-//        System.out.println("Client " + id + " successfully obtained: " + targetDocument.getName());
-//      //  clientService.addDocumentToClient(this.id, targetDocument.getId()); // Actualizare stocare în baza de date
-//    }
-
 
 
 }

@@ -16,12 +16,23 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @PostMapping()
-    public ResponseEntity<Client> createClient(@RequestBody ClientDocument clientDocument) {
-        String name = clientDocument.getName();
-        List<DocumentType> ownedDocuments = clientDocument.getOwnedDocuments();
-        Client client = clientService.createClient(name, ownedDocuments);
-        return ResponseEntity.ok(client);
+    @PostMapping("/client")
+    public ResponseEntity<?> createClient(@RequestBody ClientDocument clientDocument) {
+        try {
+            String name = clientDocument.getName();
+            List<DocumentType> ownedDocuments = clientDocument.getOwnedDocuments();
+
+//            if (clientService.existsByName(name)) {
+//                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Client name already exists!");
+//            }
+            // Creează clientul
+            Client client = clientService.createClient(name, ownedDocuments);
+            return ResponseEntity.ok(client);
+        } catch (RuntimeException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
     }
 
     @PatchMapping("/{id}/document")
