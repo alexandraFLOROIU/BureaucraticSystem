@@ -16,7 +16,7 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @PostMapping("/client")
+    @PostMapping()
     public ResponseEntity<?> createClient(@RequestBody ClientDocument clientDocument) {
         try {
             String name = clientDocument.getName();
