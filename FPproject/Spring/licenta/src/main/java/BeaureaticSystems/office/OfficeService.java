@@ -68,6 +68,11 @@ public class OfficeService {
                 .orElseThrow(() -> new RuntimeException("Client not found: " + clientId));
         DocumentType targetDocument = documentTypeRepository.findById(documentId)
                 .orElseThrow(() -> new RuntimeException("DocumentType not found: " + documentId));
+        for(DocumentType d : client.getOwnedDocuments()){
+            if(d.getId() == targetDocument.getId()){
+                throw new RuntimeException("Client already owns document " + d.getId());
+            }
+        }
 
         return processDocumentRequest(client, targetDocument);
     }
