@@ -3,6 +3,7 @@ package BeaureaticSystems.document;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,5 +20,9 @@ public class DocumentTypeService {
         return documentType.orElse(null);
     }
 
+    public List<DocumentType> getAllDocumentTypes() {
+        Optional<List<DocumentType>> docs = Optional.of(documentTypeRepository.findAll());
+        return docs.orElse(null);
+    }
 
 }

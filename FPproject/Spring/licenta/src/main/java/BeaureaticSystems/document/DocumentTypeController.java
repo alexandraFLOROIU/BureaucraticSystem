@@ -6,17 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/document")
 public class DocumentTypeController {
 
     private DocumentTypeService documentTypeService;
-    @GetMapping()
-    public String root()
-    {
-        return "index";
-    }
 
     @PostMapping()
     public ResponseEntity<DocumentType> createDocumentType(@RequestBody DocumentType docType) {
@@ -31,5 +28,15 @@ public class DocumentTypeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
             return new ResponseEntity<>(d, HttpStatus.OK);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<DocumentType>> getAllDocumentTypes() {
+        List<DocumentType> docs = documentTypeService.getAllDocumentTypes();
+        if(docs==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<>(docs, HttpStatus.OK);
+        }
     }
 }
