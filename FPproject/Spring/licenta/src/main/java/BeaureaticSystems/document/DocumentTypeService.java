@@ -34,5 +34,18 @@ public class DocumentTypeService {
         }
         return finalDocumentTypes;
     }
+    public List<DocumentType> getAllDocumentTypesWithNoDependencies() {
+        Optional<List<DocumentType>> docs = Optional.of(documentTypeRepository.findAll());
+        if (!docs.isEmpty()) {
+            return null;
+        }
+        List<DocumentType> finalDocumentTypes = new ArrayList<>();
+        for (DocumentType documentType : docs.get()) {
+            if (!documentType.getRequiredDocs().isEmpty()) {
+                finalDocumentTypes.add(documentType);
+            }
+        }
+        return finalDocumentTypes;
+    }
 
 }

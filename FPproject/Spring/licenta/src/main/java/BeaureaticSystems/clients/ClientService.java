@@ -52,6 +52,7 @@ public class ClientService {
         client.getOwnedDocuments().add(targetDocument);
         return clientRepository.save(client);
     }
+
     public Client removeDocumentFromClient(int clientId, int docId) {
         Client client = clientRepository.findById(clientId)
                 .orElseThrow(() -> new RuntimeException("Client not found with id: " + clientId));
@@ -66,6 +67,21 @@ public class ClientService {
         // Salvează modificările clientului
         clientRepository.save(client);
         return client;
+    }
+
+    public Client setDefaultDocs(int clientId) {
+        List<DocumentType> defaultDocs = documentTypeService.getAllDocumentTypesWithNoDependencies();
+        Client client = getClient(clientId);
+        if (client == null) {
+            throw new RuntimeException("Client not found");
+        }
+        if(defaultDocs == null) {
+            throw new RuntimeException("Document not found");
+        }
+        for(DocumentType defaultDoc : defaultDocs) {
+            client.getOwnedDocuments().add(defaultDoc);
+        }
+        return clientRepository.save(client);
     }
 
 }

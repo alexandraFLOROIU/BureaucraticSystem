@@ -1,6 +1,7 @@
 package BeaureaticSystems.clients;
 
 import BeaureaticSystems.document.DocumentType;
+import BeaureaticSystems.document.DocumentTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,9 @@ import java.util.Map;
 public class ClientController {
     @Autowired
     private ClientService clientService;
+
+    @Autowired
+    private DocumentTypeService documentTypeService;
 
     @PostMapping()
     public ResponseEntity<?> createClient(@RequestBody ClientDocument clientDocument) {
@@ -75,4 +79,15 @@ public class ClientController {
         }
     }
 
+    @PatchMapping("/{clientId}/document")
+    public ResponseEntity<?> setDefaultDocs(@PathVariable int clientId) {
+        try {
+            Client client = clientService.setDefaultDocs(clientId);
+            return ResponseEntity.status(HttpStatus.CREATED).body(client);
+        }catch (RuntimeException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(e.getMessage());
+        }
+    }
 }
