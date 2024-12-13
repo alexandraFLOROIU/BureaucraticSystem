@@ -20,6 +20,11 @@ public class ClientController {
     @Autowired
     private DocumentTypeService documentTypeService;
 
+    @GetMapping("first/")
+    public String index() {
+        return "index";
+    }
+
     @PostMapping()
     public ResponseEntity<?> createClient(@RequestBody ClientDocument clientDocument) {
         try {
