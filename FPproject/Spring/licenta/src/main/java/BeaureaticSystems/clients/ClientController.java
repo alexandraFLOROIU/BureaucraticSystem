@@ -84,7 +84,7 @@ public class ClientController {
         }
     }
 
-    @PatchMapping("/{clientId}/document")
+    @PatchMapping("/{clientId}/default_documents")
     public ResponseEntity<?> setDefaultDocs(@PathVariable int clientId) {
         try {
             Client client = clientService.setDefaultDocs(clientId);
