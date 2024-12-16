@@ -34,18 +34,31 @@ public class DocumentTypeService {
         }
         return finalDocumentTypes;
     }
+
     public List<DocumentType> getAllDocumentTypesWithNoDependencies() {
-        Optional<List<DocumentType>> docs = Optional.of(documentTypeRepository.findAll());
-        if (!docs.isEmpty()) {
-            return null;
+        // Obținem toate documentele din repository
+        List<DocumentType> docs = documentTypeRepository.findAll();
+
+        // Verificăm dacă lista docs este null sau goală
+        if (docs == null || docs.isEmpty()) {
+            System.out.println("Lista documentelor este goală sau null.");
+            return new ArrayList<>(); // Returnăm o listă goală
         }
+
+        // Inițializăm lista finală
         List<DocumentType> finalDocumentTypes = new ArrayList<>();
-        for (DocumentType documentType : docs.get()) {
-            if (!documentType.getRequiredDocs().isEmpty()) {
+
+        // Iterăm prin documente pentru a verifica dacă lista requiredDocs este goală
+        for (DocumentType documentType : docs) {
+            // Verificăm dacă requiredDocs nu este null și este goală
+            if (documentType.getRequiredDocs() != null && documentType.getRequiredDocs().isEmpty()) {
                 finalDocumentTypes.add(documentType);
             }
         }
+
+        // Returnăm lista finală
         return finalDocumentTypes;
     }
+
 
 }
