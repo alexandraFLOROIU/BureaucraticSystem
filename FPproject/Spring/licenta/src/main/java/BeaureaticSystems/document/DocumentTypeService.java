@@ -21,14 +21,31 @@ public class DocumentTypeService {
         return documentType.orElse(null);
     }
 
+//    public List<DocumentType> getAllDocumentTypes() {
+//        Optional<List<DocumentType>> docs = Optional.of(documentTypeRepository.findAll());
+//        if (docs.isEmpty()) {
+//            return null;
+//        }
+//        List<DocumentType> finalDocumentTypes = new ArrayList<>();
+//        for (DocumentType documentType : docs.get()) {
+//            if (!documentType.getRequiredDocs().isEmpty()) {
+//                finalDocumentTypes.add(documentType);
+//            }
+//        }
+//        return finalDocumentTypes;
+//    }
+
+
     public List<DocumentType> getAllDocumentTypes() {
         Optional<List<DocumentType>> docs = Optional.of(documentTypeRepository.findAll());
         if (docs.isEmpty()) {
             return null;
         }
+
         List<DocumentType> finalDocumentTypes = new ArrayList<>();
         for (DocumentType documentType : docs.get()) {
-            if (!documentType.getRequiredDocs().isEmpty()) {
+            // Verificăm dacă documentul are dependențe (requiredDocs)
+            if (documentType.getRequiredDocs() != null && !documentType.getRequiredDocs().isEmpty()) {
                 finalDocumentTypes.add(documentType);
             }
         }

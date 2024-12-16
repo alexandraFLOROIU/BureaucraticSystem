@@ -95,4 +95,10 @@ public class ClientController {
                     .body(e.getMessage());
         }
     }
+
+    @GetMapping("{clientId}/ownedDocuments")
+    public ResponseEntity<List<DocumentType>> getClientDocuments(@PathVariable int clientId) {
+        List<DocumentType> documents = clientService.getOwnedDocuments(clientId);
+        return ResponseEntity.ok(documents);
+    }
 }

@@ -30,13 +30,25 @@ public class DocumentTypeController {
             return new ResponseEntity<>(d, HttpStatus.OK);
     }
 
+//    @GetMapping()
+//    public ResponseEntity<List<DocumentType>> getAllDocumentTypes() {
+//        List<DocumentType> docs = documentTypeService.getAllDocumentTypes();
+//        if(docs==null){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }else{
+//            return new ResponseEntity<>(docs, HttpStatus.OK);
+//        }
+//    }
+
     @GetMapping()
     public ResponseEntity<List<DocumentType>> getAllDocumentTypes() {
         List<DocumentType> docs = documentTypeService.getAllDocumentTypes();
-        if(docs==null){
+        if (docs == null || docs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else{
+        } else {
+            // Dacă documentele există, returnăm documentele cu dependențele lor
             return new ResponseEntity<>(docs, HttpStatus.OK);
         }
     }
+
 }

@@ -84,4 +84,13 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
+    public List<DocumentType> getOwnedDocuments(int clientId) {
+        // Căutăm clientul în baza de date
+        Client client = clientRepository.findById(clientId)
+                .orElseThrow(() -> new RuntimeException("Client not found with id: " + clientId));
+
+        // Returnăm lista ownedDocuments
+        return client.getOwnedDocuments();
+    }
+
 }
