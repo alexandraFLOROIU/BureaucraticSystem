@@ -20,7 +20,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         // Configurează CORS pentru rutele aplicației
         registry.addMapping("/**")  // Permite cereri către toate rutele
-                .allowedOrigins("http://localhost:3000")  // Frontend-ul React
+                .allowedOrigins("http://localhost:3000", "http://localhost:3001")  // Frontend-ul React pentru client și admin
                 .allowedMethods("GET", "POST", "PUT", "DELETE")  // Permite aceste metode
                 .allowedHeaders("*")  // Permite toate headerele
                 .allowCredentials(true);  // Permite cookies sau autentificare, dacă este necesar

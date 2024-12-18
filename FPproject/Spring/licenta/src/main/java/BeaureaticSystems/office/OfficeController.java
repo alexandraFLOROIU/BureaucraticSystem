@@ -52,7 +52,7 @@ public class OfficeController {
     }
     @GetMapping()
     public ResponseEntity getAllOffices() {
-        Iterable<Office> o = officeService.getAllOffices();
+        List<Office> o = officeService.getAllOffices();
         return new ResponseEntity<>(o, HttpStatus.OK);
     }
 
@@ -127,4 +127,25 @@ public class OfficeController {
         // Returnează Counter-ul actualizat
         return ResponseEntity.ok(updatedOffice);
     }
+
+    @PatchMapping("{officeId}/counter/{counterId}")
+    public ResponseEntity<String> deleteCounterFromOffice(
+            @PathVariable int officeId,
+            @PathVariable int counterId
+    ) {
+        try {
+            // Apelăm serviciul pentru a elimina counter-ul din office
+            officeService.removeCounterFromOffice(officeId, counterId);
+
+            // Dacă nu au apărut excepții, returnăm un răspuns de succes
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("Counter removed successfully.");
+        } catch (RuntimeException e) {
+            // Dacă apare vreo excepție, o gestionăm și returnăm un răspuns de eroare
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(e.getMessage());
+        }
+    }
+
+
 }

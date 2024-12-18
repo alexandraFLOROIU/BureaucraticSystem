@@ -26,4 +26,9 @@ public class CounterService {
         return counterRepository.findById(id)
                 .orElse(null);
     }
+
+    public void deleteCounterById(int id) {
+        counterRepository.deleteById(id);
+    }
+
 }

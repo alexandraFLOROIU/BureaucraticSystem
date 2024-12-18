@@ -3,10 +3,7 @@ package BeaureaticSystems.counter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.EnumSet;
 
@@ -21,4 +18,17 @@ public class CounterController {
         counterService.createCounter(counter);
         return new ResponseEntity<>(counter, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteCounter(@PathVariable int id) {
+        Counter counter = counterService.getCounterById(id);
+        if (counter == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Counter with ID " + id + " not found");
+        }
+        counterService.deleteCounterById(id);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body("Counter with ID " + id + " has been deleted successfully");
+    }
+
 }

@@ -28,6 +28,7 @@ public class SecurityConfig {
     public UrlBasedCorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedOrigin("http://localhost:3000"); // Originea frontend-ului
+        corsConfiguration.addAllowedOrigin("http://localhost:3001");
         corsConfiguration.addAllowedMethod("GET"); // Permite metoda GET
         corsConfiguration.addAllowedMethod("POST"); // Permite metoda POST
         corsConfiguration.addAllowedMethod("PATCH"); // Permite metoda PATCH

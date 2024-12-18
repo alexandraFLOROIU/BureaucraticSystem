@@ -7,4 +7,7 @@ import java.util.List;
 
 @Repository
 public interface OfficeRepository extends CrudRepository<Office, Integer> {
+
+    @Override
+    List<Office> findAll();
 }

@@ -56,7 +56,7 @@ public class OfficeService {
         return office;
     }
 
-    public Iterable<Office> getAllOffices() {
+    public List<Office> getAllOffices() {
         return officeRepository.findAll();
     }
 
@@ -110,7 +110,7 @@ public class OfficeService {
         }
 
         List<DocumentType> sortedList = new ArrayList<>(requiredDocuments);
-        Collections.reverse(sortedList);
+       // Collections.reverse(sortedList);
         return sortedList;
     }
 
@@ -167,7 +167,7 @@ public class OfficeService {
             System.out.println("Counter with id " + availableCounter.getId() + " became busy because document for client with id " + client.getId() + " is being processed");
 
             // Simulate processing (replace with actual logic)
-            Thread.sleep(new Random().nextInt(100, 500));
+            Thread.sleep(new Random().nextInt(10000, 20000));
 
             client.getOwnedDocuments().add(documentType);
             client.setTargetDocument(documentType);
@@ -273,4 +273,27 @@ public class OfficeService {
             counters.forEach(this::randomlyPutCounterOnBreak);
         }
     }
+
+    public boolean removeCounterFromOffice(int officeId, int counterId) {
+        // Găsim office-ul după ID
+        Office office = officeRepository.findById(officeId).orElseThrow(() -> new RuntimeException("Office not found"));
+
+        // Găsim counter-ul după ID
+        Counter counter = counterRepository.findById(counterId).orElseThrow(() -> new RuntimeException("Counter not found"));
+
+        // Verificăm dacă acest counter este asociat cu office-ul
+        if (!office.getCounters().contains(counter)) {
+            throw new RuntimeException("Counter is not associated with the specified office");
+        }
+
+        // Eliminăm counter-ul din lista de countere a office-ului
+        office.getCounters().remove(counter);
+
+        // Salvăm modificările în baza de date
+        officeRepository.save(office);
+
+        return true;
+    }
+
+
 }
