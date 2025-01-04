@@ -34,6 +34,7 @@ public class ClientController {
 //            if (clientService.existsByName(name)) {
 //                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Client name already exists!");
 //            }
+
             // Creează clientul
             Client client = clientService.createClient(name, ownedDocuments);
             return ResponseEntity.ok(client);
