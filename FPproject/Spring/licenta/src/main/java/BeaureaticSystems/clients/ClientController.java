@@ -102,4 +102,20 @@ public class ClientController {
         List<DocumentType> documents = clientService.getOwnedDocuments(clientId);
         return ResponseEntity.ok(documents);
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Client>> getAllClients() {
+        try {
+            // Obținem lista tuturor clienților folosind serviciul
+            List<Client> clients = clientService.getAllClients();
+
+            // Returnăm lista ca răspuns cu statusul OK
+            return ResponseEntity.ok(clients);
+        } catch (RuntimeException e) {
+            // În caz de eroare, returnăm un mesaj corespunzător
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(null);
+        }
+    }
 }

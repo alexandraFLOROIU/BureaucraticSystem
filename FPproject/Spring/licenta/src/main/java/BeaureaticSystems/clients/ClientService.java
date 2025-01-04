@@ -93,4 +93,9 @@ public class ClientService {
         return client.getOwnedDocuments();
     }
 
+    public List<Client> getAllClients() {
+        // Găsim toți clienții folosind repository-ul
+        return clientRepository.findAll();
+    }
+
 }
