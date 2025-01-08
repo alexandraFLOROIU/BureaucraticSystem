@@ -1,61 +1,24 @@
 # FlowerPower
-PCBE project 2024-2025 Bureaucratic System
+PCBE project 2024-2025 Beaureatic System
 Primărie Digitală - Coordonator de Sistem Birocratic
 
-  În cadrul sistemului birocratic, sunt incluse următoarele birouri, fiecare având responsabilitatea de a emite anumite documente specifice:
-1.Birou de Urbanism și Amenajare teritorială:
-      Documente emise: - certificat de urbanism
-                               -certificat fiscal
-                               -carte de identitate
-                       - autorizație de construire
-                               -certificat de urbanism
-                               -certificat fiscal
-                       - autorizație de demolare
-                               -certificat de urbanism
-                               -certificat fiscal
-      Vor exista 2 ghișee care pot emite certificat de urbanism și două ghișee care pot emite atât autorizație de construire, cât și autorizație de demolare.   
+Sistemul birocratic FlowerPower este o soluție digitală avansată care optimizează fluxul de emitere a documentelor oficiale la nivelul primăriilor. Proiectul integrează birouri specializate, fiecare având responsabilitatea de a emite anumite documente și un sistem de gestionare eficientă a clienților și resurselor.
+Funcționalități tehnice cheie:
 
-
-2.Birou de Taxe și impozite:
-       Documente emise: - certificat fiscal
-                                -carte de identitate
-                                -extras de cont
-                        - chitanță de plată a taxelor locale
-                                -documente de proprietate
-                                -carte de identitate
-                                -decizie de impunere
-                        - decizie de impunere
-                                -carte de identitate
-                                -documente de proprietate
-                        - adeverință de venit
-                                -carte de identitate
-                                -declarație de venit
-                                -chitanță de plată a taxelor
-       Vor exista 2 ghișee care pot emite certificat fiscal, chitanță de plată a taxelor locale și două ghișee care pot emite decizie de impunere, adeverință de venit.
-
-3.Birou de Asistență Socială:
-      Documente emise: - ajutor social
-                                -cerere tip
-                                -carte de identitate
-                                -certificat de naștere
-                                -certificat de căsătorie
-                                -adeverință de venit
-                                -dovadă domiciliu
-                                -certificat fiscal
-                                -adeverință medicală
-                       - tichete sociale
-                                -cerere tip
-                                -carte de identitate
-                                -adeverință de venit
-                                -certificat fiscal
-       Vor exista 2 ghișee care pot emite ambele tipuri de documente.
+1. Gestionarea solicitărilor de documente
+   Clienții pot solicita documente prin intermediul unui sistem digital.
+   Sistemul determină documentele necesare pentru obținerea documentului dorit și asigură că toate dependențele sunt pregătite înainte de emiterea sa.
+2. Alocarea automată a resurselor
+   Ghișeele disponibile sunt gestionate eficient.
+   Dacă toate ghișeele sunt ocupate, clienții sunt plasați într-o coadă de așteptare sincronizată.
+3. Simularea pauzelor pentru ghișee
+   Periodic, anumite ghișee intră în pauză sau devin disponibile automat.
+   Pauzele sunt gestionate în mod sincronizat, iar clienții sunt notificați atunci când un ghișeu devine disponibil.
+4. Sincronizare și concurență
+   Resursele sunt gestionate într-un mod sigur, utilizând mecanisme de sincronizare pentru evitarea conflictelor între cereri multiple.
    
-În cadrul sistemului, fiecare client este inițializat cu un set de documente implicite:
-                      -carte de identitate
-                      -certificat de naștere
-                      -certificat de căsătorie
-                      -dovadă domiciliu
-                      -adeverință medicală
-                      -documente de proprietate
-                      -extras de cont
-                      -declarație de venit
+   FlowerPower este un sistem modern care transformă procesul birocratic într-o soluție digitalizată și eficientă, permițând primăriilor să gestioneze documentele și resursele într-un mod automatizat și centrat pe client.
+   Sistemul poate fi implementat cu două interfețe utilizator separate, fiecare adaptată nevoilor specifice:
+   UI/UIX pentru Clienți: O platformă dedicată utilizatorilor, care le permite să solicite documente, să vizualizeze documentele deținute și să exploreze lista documentelor disponibile pentru cerere.
+   UI/UIX pentru Admin: O aplicație separată, destinată personalului administrativ, care oferă funcționalități avansate pentru vizualizarea clienților, birourilor, ghișeelor, documentelor emise și monitorizarea statusului ghișeelor.
+
